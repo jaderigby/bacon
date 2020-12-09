@@ -70,7 +70,7 @@ Utilities observe the following behavior:
 
 - When invoking a utility, each utility follows the pattern: `<utility-name> <attribute>`
 
-- Utilities come with a handful of `helpers` when writing your utility, that make writing utilities easier.  These are common `helper` functions covering common actions that a typical utility may use.
+- Utilities come with a handful of `helpers` when writing your utility, that make writing utilities easier.  These are common `helper` functions covering common actions that a typical utility might use.
 
 ## Terminology ##
 
@@ -87,5 +87,6 @@ __Bacon:__ A simple utility that makes everything better!
 - helpers.py = where all common functions should live.  A typical utility will contain any functions not defining specific business logic inside the helpers.py file.
 - __settings.py__ = where the settings definitions live.  This file typically does not need to be modified.
 - __profiles__ = the profiles folder is where locally-specific settings live.  Any definition specific to a particular developers setup can be defined here.  This is also where any settings or task-specific data/definitions should live.  You can have multiple profile files inside the `profiles` folder.  Change which profile file your utility points to by changing the `settings.py` reference.
+- __profile.py__ = an example profile file.
 - __status.py__ = the status file is simply for runing the `status` attribute in order to verify setup in the beginning. This can be modified and used however you like or you may remove this file and its accompanying `actions.py` reference.
 - __action.py__ = an example of a typical action file.  This can also be removed, along with its reference inside the `actions.py` file.
