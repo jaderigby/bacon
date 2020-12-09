@@ -1,6 +1,6 @@
 # Bacon #
 
-Bacon is a utility for building other utilities. It helps generate a template for creating quick utilities run in bash (using alias commands) and written in Python.  In short, Bacon makes any task better!
+Bacon is a utility for building other utilities. It helps generate a template for creating quick utilities run in bash (using alias commands) and written in Python.  In short, Bacon makes everything better!
 
 ## Setup ##
 
@@ -31,9 +31,9 @@ Once your .bashrc file is setup, add the following to your `.bash_profile` file.
 source ~/Documents/bash-tools/.bashrc
 ```
 
-You are set!
+__You are set!__
 
-If you are using the default setup, ie inside the `Documents` folder, you could do something like the following:
+If you are using the default setup, ie inside the `Documents` folder, you can run the following commands for your setup:
 
 ```
 cd ~/Documents && mkdir bash-tools
