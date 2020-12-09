@@ -56,7 +56,7 @@ bacon new
 
 This will walk you through creating a new utility.
 
-When adding an attribute to an existing feature, do:
+When adding an attribute to an existing utility, do:
 
 ```
 bacon add
