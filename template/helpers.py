@@ -20,3 +20,8 @@ def write_file(FILEPATH, DATA):
 	FILE = open(FILEPATH, 'w')
 	FILE.write(DATA)
 	FILE.close()
+
+def run_command(CMD):
+	import subprocess
+	print('\n============== Running Command: {}\n'.format(CMD))
+	subprocess.call(CMD, shell=True)
