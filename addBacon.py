@@ -44,6 +44,7 @@ What would you like to call the action? ''')
 # settings = helpers.get_settings()
 
 def execute():
+    msg.example()
 '''
         finalPath = fullPath + '/' + newFeature + '.py'
         print '''
