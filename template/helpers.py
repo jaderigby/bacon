@@ -26,7 +26,7 @@ def run_command(CMD):
 	print('\n============== Running Command: {}\n'.format(CMD))
 	subprocess.call(CMD, shell=True)
 
-def command_output(CMD):
+def run_command_output(CMD):
 	import subprocess
 	print('\n============== Running Command: {}\n'.format(CMD))
 	result = False
@@ -42,7 +42,7 @@ def command_output(CMD):
 
 	return result
 
-# returns PascalCased strings as strings with spaces. Acronyms, such as NASASatellite will resolve to "NASA Satellite"
+# returns PascalCased/camelCased strings as strings with spaces. Acronyms, such as NASASatellite will resolve to "NASA Satellite"
 # Be advised: does not account for numbers
 def titled(NAME):
 	import re
@@ -65,3 +65,7 @@ def titled(NAME):
 		else:
 			charList.append(char)
 	return ''.join(charList)
+
+def kabob(NAME):
+	str = titled(NAME)
+	return str.replace(' ', '-').lower()
