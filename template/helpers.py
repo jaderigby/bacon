@@ -28,7 +28,7 @@ def run_command(CMD):
 
 def run_command_output(CMD):
 	import subprocess
-	print('\n============== Running Command: {}\n'.format(CMD))
+	print('\n============== Outputting Command: {}\n'.format(CMD))
 	result = False
 	if CMD != None:
 		process = subprocess.Popen(CMD, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
