@@ -12,3 +12,7 @@ You may edit this message by going to your utility's
 Add a welcome message or a help menu, such as adding 
 a list of your utility's possible commands.
 ''')
+
+def done():
+	print('''
+[ Process Completed ]''')
