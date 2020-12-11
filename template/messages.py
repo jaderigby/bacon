@@ -15,4 +15,5 @@ a list of your utility's possible commands.
 
 def done():
 	print('''
-[ Process Completed ]''')
+[ Process Completed ]
+''')
