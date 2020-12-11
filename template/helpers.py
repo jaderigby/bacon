@@ -66,6 +66,36 @@ def titled(NAME):
 			charList.append(char)
 	return ''.join(charList)
 
+# processes string through titled function above; then, replaces spaces with dashes, such as: "NASA Satellite" to "nasa-satellite"
 def kabob(NAME):
 	str = titled(NAME)
 	return str.replace(' ', '-').lower()
+
+# generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
+def user_selection(DESCRIPTION, LIST):
+	import re
+	str = ''
+	for i, item in enumerate(LIST, start=1):
+		str += '\n[{index}] {item}'.format(index=i, item=item)
+	str += '\n\n[x] Exit\n'
+
+	finalAnswer = False
+
+	while True:
+		print(str)
+		selection = raw_input('{}'.format(DESCRIPTION))
+		pat = re.compile("[0-9]+")
+		if pat.match(selection):
+			selection = int(selection)
+		if isinstance(selection, int):
+			finalAnswer = selection
+			break
+		elif selection is 'x':
+			finalAnswer = 'exit'
+			break
+		elif selection is '':
+			finalAnswer = 'exit'
+			break
+		else:
+			print("\nPlease select a valid entry...")
+	return finalAnswer
