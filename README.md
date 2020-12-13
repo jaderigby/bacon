@@ -31,9 +31,15 @@ Once your .bashrc file is setup, add the following to your `.bash_profile` file.
 source ~/Documents/bash-tools/.bashrc
 ```
 
+Finally, do:
+
+```
+source ~/.bash_profile
+```
+
 __You are set!__
 
-If you are using the default setup, ie inside the `Documents` folder, you can run the following commands for your setup:
+If you are using the default setup, ie placing it inside the `Documents` folder, you can run the following commands for your setup:
 
 ```
 cd ~/Documents && mkdir bash-tools
@@ -42,6 +48,7 @@ git clone git@github.com:jaderigby/bacon.git
 cd ~/Documents/bash-tools/bacon && touch .bashrc
 echo "alias bacon=\"python ~/Documents/bash-tools/bacon/baconActions.py\"" >> .bashrc
 echo "source ~/Documents/bash-tools/.bashrc" >> .bash_profile
+source ~/.bash_profile
 ```
 
 ## Usage ##
