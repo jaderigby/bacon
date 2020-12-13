@@ -76,7 +76,7 @@ Utilities observe the following behavior:
 
 __Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking said script.
 
-__Attribute:__ A command added to a utility, such as `bacon add` where `add` is the action.
+__Action:__ A command added to a utility, such as `bacon add` where `add` is the action.
 
 __Bacon:__ A simple utility that makes everything better!
 
