@@ -3,7 +3,7 @@ from settings import settings
 
 profilePath = settings['profile_url'] + settings['profile']
 
-# path for current user. Example: "~/"
+# path for current user. Example: "cd ~/"
 def root():
 	import os
 	return os.path.expanduser('~/')

@@ -52,7 +52,3 @@ def execute():
 	print('''
 [ Process Complete ]
 	''')
-
-# subprocess.call(['source', '~/Documents/bash-tools/.bashrc'], shell=True)
-#
-# subprocess.call(['source', '~/.bash_profile'], shell=True)
