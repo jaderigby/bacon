@@ -3,6 +3,16 @@ from settings import settings
 
 profilePath = settings['profile_url'] + settings['profile']
 
+# path for current user. Example: "~/"
+def root():
+	import os
+	return os.path.expanduser('~/')
+
+# path to utility
+def self_path():
+	import os
+	return os.path.dirname(os.path.realpath(__file__))
+
 def load_profile():
 	return json.loads(read_file(profilePath))
 

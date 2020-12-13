@@ -1,4 +1,4 @@
-import os, re
+import os, re, json
 
 def execute(ROOT_DIR):
     def read_file(FILEPATH):
@@ -62,6 +62,13 @@ elif action == "{newAction}":
 # new actions start here'''.format(newFeature=newFeature, newAction=newAction)
         data = data.replace("# new actions start here", newContent)
         write_file(fullPath + '/actions.py', data)
+        actionData = json.loads(read_file(fullPath + '/action-list.json'))
+        # actionData['actions'].append('testingObj')
+        newItem = {}
+        newItem['name'] = newAction
+        newItem['description'] = ''
+        actionData['actions'].append(newItem)
+        write_file(fullPath + '/action-list.json', json.dumps(actionData, indent=4))
     print
     print "[ Process Completed ]"
     print

@@ -1,19 +1,23 @@
-def example():
-	print('''
-process working!
-''')
+import helpers, json
+
+actionList = json.loads(helpers.read_file('action-list.json'))
 
 def statusMessage():
-	print('''
+	if len(actionList['actions']) > 0:
+		for item in actionList['actions']:
+			print('''\n[ {} {} ]\t\t{}
+'''.format(actionList['toolName'], item['name'], item['description']))
+	else:
+		print('''
 <tool-name> is working successfully!
-
-You may edit this message by going to your utility's 
-"message.py" file and modifying the "statusMessage" function.
-Add a welcome message or a help menu, such as adding 
-a list of your utility's possible commands.
 ''')
 
 def done():
 	print('''
 [ Process Completed ]
+''')
+
+def example():
+	print('''
+process working!
 ''')
