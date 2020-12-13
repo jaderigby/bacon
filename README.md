@@ -96,8 +96,8 @@ __Bacon:__ A simple utility that makes everything better!
 ## Structure ##
 
 - __actions.py__ = where the action invocations are defined.
-- __messages.py__ = where all messages are to be contained.  This keeps things clean and defined.
-- __helpers.py__ = where all common functions should live.  A typical utility will contain any functions not defining specific business logic inside the helpers.py file.
+- __messages.py__ = where all messages are to be contained.  This keeps things clean and neat.
+- __helpers.py__ = where all common functions should live.  A typical helpers file will contain any functions not defining specific business logic.
 - __settings.py__ = where the settings definitions live.  This file typically does not need to be modified.
 - __profiles__ = the profiles folder is where locally-specific settings live.  Any definition specific to a particular developers setup can be defined here.  This is also where any settings or task-specific data/definitions should live.  You can have multiple profile files inside the `profiles` folder.  Change which profile file your utility points to by changing the reference in the utility's `settings.py` file.
 - __profile.py__ = an example profile file.
