@@ -104,3 +104,18 @@ __Bacon:__ A simple utility that makes everything better!
 - __status.py__ = the status file is simply for running the `status` attribute in order to verify setup in the beginning. This can be modified and used however you like or you may remove this file and its accompanying reference in the `actions.py` file.
 - __action-list.json__ = this is where the actions are described.  When you do `myUtility status`, this file is read, and the names and descriptions are listed. You can use this file to add descriptions for each of your utility's actions.
 - __action.py__ = an example of a typical action file.  This can also be removed, along with its reference inside the `actions.py` file.
+
+## Helpers ##
+
+The helpers file is where you can include the functions that your utility uses.  This file is intended to include any non-business logic.  Bacon utilities come pre-configured with a handful of useful helper functions already.  These are listed below:
+
+- __root()__ = returns the user's root directory path, such as doing `cd ~/`
+- __self_path()__ = returns the directory path for the utility.
+- __load_profile()__ & __get_settings()__ = these two functions are set up specifically for calling the settings.  If you want to use the settings in an action file, uncomment the commented settings line at the top of the file.
+- __read_file()__ = opens a specified file
+- __write_file()__ = writes to a specified file the data passed in as the second argument
+- __run_command()__ = runs a specified bash command
+- __run_command_output()__ runs a specified command and then returns the output
+- __titled()__ converts any PascalCased/camelCased string to a title string, ie, a string with spaces and capitals at the beginning of each word.
+- __kabob()__ = converts any PascalCased/camelCased string to a lowercase string seperated by dashes.
+- __user_selection()__ converts a specified list to an interactive selection, where each list item is numbered.  The first argument determins the string given as the input prompt.  If "x" is selected, or enter is pressed before a selection is made, then the function returns the string "exit".  Any other selection that is not a number, returns the error "Please select a valid entry" and allows the user to try again.
