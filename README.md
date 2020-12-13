@@ -4,6 +4,10 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 ## Setup ##
 
+### Section 1 ###
+
+__Note:__ If you would like to use the default setup, you can skip to _Section 2_ and run the commands listed.
+
 First, create a directory called "bash-tools".  Typically, this lives inside your "Documents" folder, but you can create it wherever you like.  Next, `cd` into the `bash-tools` directory. So, for example:
 
 ```
@@ -38,6 +42,8 @@ source ~/.bash_profile
 ```
 
 __You are set!__
+
+### Section 2 ###
 
 If you are using the default setup, ie placing it inside the `Documents` folder, you can run the following commands for your setup:
 
