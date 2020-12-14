@@ -16,13 +16,13 @@ def execute(ROOT_DIR):
     index = 0
     newList = []
     newFeature = ''
-    print
+    print("")
     for item in dirList:
         pat = "\."
         match = re.search(pat, item)
         if not match:
             index += 1
-            print "[{}] {}".format(index, item)
+            print("[{}] {}").format(index, item)
             newList.append(item)
     selection = raw_input('''
 [x] Exit
@@ -30,8 +30,8 @@ def execute(ROOT_DIR):
 Selection: ''')
     if selection != 'x':
         selection = int(selection) - 1
-        print '''
-PROJECT: {}'''.format(newList[selection])
+        print('''
+PROJECT: {}''').format(newList[selection])
         fullPath = ROOT_DIR + '/' + newList[selection]
         newFeature = raw_input('''
 -- New Feature --
@@ -47,11 +47,11 @@ def execute():
     msg.example()
 '''
         finalPath = fullPath + '/' + newFeature + '.py'
-        print '''
+        print('''
 PROJECT:        {}
 NEW MODULE:     {}
 NEW ACTION:     {}
-LOCATION:       {}'''.format(newList[selection], newFeature, newAction, finalPath)
+LOCATION:       {}''').format(newList[selection], newFeature, newAction, finalPath)
         write_file(finalPath, template)
         data = read_file(fullPath + '/actions.py')
         data = data.replace('# new imports start here', '''import {}
@@ -69,6 +69,6 @@ elif action == "{newAction}":
         newItem['description'] = ''
         actionData['actions'].append(newItem)
         write_file(fullPath + '/action-list.json', json.dumps(actionData, indent=4))
-    print
-    print "[ Process Completed ]"
-    print
+    print("")
+    print("[ Process Completed ]")
+    print("")

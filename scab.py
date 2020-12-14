@@ -123,9 +123,9 @@ class scab:
 		self.myFilePat = myPat
 		reFolderList = []
 		reFileList = []
-		print
-		print "REGEX PATTERN: "
-		print '"%s"' % myPat
+		print("")
+		print("REGEX PATTERN: ")
+		print('"%s"' % myPat)
 		regexCount = 0
 		for i in self.contentsFolders:
 			match = re.search(myPat, i)
@@ -139,9 +139,9 @@ class scab:
 				regexCount += 1
 			if not match:
 				reFileList.append(i)
-		print
-		print "Number of Matches: ", regexCount
-		print
+		print("")
+		print("Number of Matches: {}".format(regexCount)
+		print("")
 		self.contentsFolders = reFolderList
 		self.contentsFiles = reFileList
 
@@ -190,7 +190,7 @@ class scab:
 					if not os.path.exists(newFolder):
 						os.makedirs(newFolder)
 			except TypeError:
-				"Captured Here! Must be creating a brand new folder"
+				print("Captured Here! Must be creating a brand new folder")
 				if not os.path.exists(destination):
 					os.makedirs(destination)
 		def doFile():
@@ -203,12 +203,12 @@ class scab:
 						FILE.write(data)
 						FILE.close()
 			except TypeError:
-				print "Warning: May be creating a new folder -- be sure to double-check"
+				print("Warning: May be creating a new folder -- be sure to double-check")
 		if (self.singleFileCheck == True):
 			newFolder = re.sub(self.isFilePat, "", destination)
-			print "Destination = ", newFolder
+			print("Destination = {}".format(newFolder)
 			if not os.path.exists(newFolder):
-				print "Folder doesn't exist; creating it now!"
+				print("Folder doesn't exist; creating it now!")
 				os.makedirs(newFolder)
 			doFile()
 		else:
