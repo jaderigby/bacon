@@ -51,7 +51,7 @@ If you are using the default setup, ie placing it inside the `Documents` folder,
 cd ~/Documents && mkdir bash-tools
 cd bash-tools
 git clone git@github.com:jaderigby/bacon.git
-cd ~/Documents/bash-tools/bacon && touch .bashrc
+cd ~/Documents/bash-tools && touch .bashrc
 echo "alias bacon=\"python ~/Documents/bash-tools/bacon/baconActions.py\"" >> .bashrc
 echo "source ~/Documents/bash-tools/.bashrc" >> .bash_profile
 source ~/.bash_profile
