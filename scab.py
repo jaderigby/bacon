@@ -58,18 +58,6 @@ class scab:
 
 	def scan(self, myDir):
 		self.obj = myDir
-		if os.path.exists(myDir):
-			print
-			print "====================="
-			print "Success: Target Found"
-			print "====================="
-			print
-		else:
-			print
-			print "======================="
-			print "Sorry, Target Not Found"
-			print "======================="
-			print
 		#== check to see if specific file is being passed in
 		match = re.search(self.isFilePat, myDir)
 		singleFile = ""
@@ -177,43 +165,20 @@ class scab:
 			for i in myContents:
 				if self.absRel == 'relative':
 					i = i.replace(self.obj+"/", '')
-				print "SHOW ME CONTENTS: "
-				print i
 				tempString = tempString+"\t'"+i+"',\n"
 			makeString = "[\n"+tempString[:-2]+"\n]"
-			print
-			print "Results in:"
-			print makeString
 			return makeString
-		print
-		print "====================================================="
-		print
-		print "FOLDERS"
-		print "Folder List:"
-		print self.contentsFolders
 		dataFolders = prep_doc(self.contentsFolders)
-		print
-		print "====================================================="
-		print
-		print "FILES"
-		print "File List:"
-		print self.contentsFiles
 		dataFiles = prep_doc(self.contentsFiles)
 		data = "'Folders' : "+dataFolders+",\n'Files' : "+dataFiles
 		if not myRecord == "":
 			FILE = open(myRecord, 'w')
 			FILE.write(data)
 			FILE.close()
-		print
-		print "====================================================="
-		print
 
 	def create(self, destination):
 		newFolder = destination
 		if not os.path.exists(newFolder):
-			print
-			print newFolder
-			print
 			os.makedirs(newFolder)
 
 	def build(self, destination):
@@ -223,16 +188,10 @@ class scab:
 					newFolder = folder.replace(self.obj, destination)
 					self.newFolder = newFolder
 					if not os.path.exists(newFolder):
-						print
-						print newFolder
-						print
 						os.makedirs(newFolder)
 			except TypeError:
 				"Captured Here! Must be creating a brand new folder"
 				if not os.path.exists(destination):
-					print
-					print destination
-					print
 					os.makedirs(destination)
 		def doFile():
 			try:
