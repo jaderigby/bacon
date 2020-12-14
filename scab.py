@@ -206,7 +206,7 @@ class scab:
 				print("Warning: May be creating a new folder -- be sure to double-check")
 		if (self.singleFileCheck == True):
 			newFolder = re.sub(self.isFilePat, "", destination)
-			print("Destination = {}".format(newFolder)
+			print("Destination = {}".format(newFolder))
 			if not os.path.exists(newFolder):
 				print("Folder doesn't exist; creating it now!")
 				os.makedirs(newFolder)
