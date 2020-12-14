@@ -114,8 +114,8 @@ The helpers file is where you can include the functions that your utility uses. 
 - __load_profile()__ & __get_settings()__ = these two functions are set up specifically for calling the settings.  If you want to use the settings in an action file, uncomment the commented settings line at the top of the file.
 - __read_file()__ = opens a specified file
 - __write_file()__ = writes to a specified file the data passed in as the second argument
-- __run_command()__ = runs a specified bash command
-- __run_command_output()__ runs a specified command and then returns the output
-- __titled()__ converts any PascalCased/camelCased string to a title string, ie, a string with spaces and capitals at the beginning of each word.
+- __run_command()__ = runs a specified bash command. Also, it has an optional secondary argument which accepts a boolean, to supress the output message. Example: `run_command('pwd', False)`
+- __run_command_output()__ = runs a specified command and then returns the output.  Also, it has an optional secondary argument which accepts a boolean, to supress the output message. Example: `run_command_output('pwd', False)`
+- __titled()__ = converts any PascalCased/camelCased string to a title string, ie, a string with spaces and capitals at the beginning of each word.
 - __kabob()__ = converts any PascalCased/camelCased string to a lowercase string seperated by dashes.
-- __user_selection()__ converts a specified list to an interactive selection, where each list item is numbered.  The first argument determins the string given as the input prompt.  If "x" is selected, or enter is pressed before a selection is made, then the function returns the string "exit".  Any other selection that is not a number, returns the error "Please select a valid entry" and allows the user to try again.
+- __user_selection()__ = converts a specified list to an interactive selection, where each list item is numbered.  The first argument determins the string given as the input prompt.  If "x" is selected, or enter is pressed before a selection is made, then the function returns the string "exit".  Any other selection that is not a number, returns the error "Please select a valid entry" and allows the user to try again.
