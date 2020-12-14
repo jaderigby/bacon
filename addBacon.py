@@ -1,4 +1,4 @@
-import os, re, json
+import os, re, json, helpers
 
 def execute(ROOT_DIR):
     def read_file(FILEPATH):
@@ -24,7 +24,7 @@ def execute(ROOT_DIR):
             index += 1
             print("[{}] {}".format(index, item))
             newList.append(item)
-    selection = raw_input('''
+    selection = helpers.user_input('''
 [x] Exit
 
 Selection: ''')
@@ -33,10 +33,10 @@ Selection: ''')
         print('''
 PROJECT: {}''').format(newList[selection])
         fullPath = ROOT_DIR + '/' + newList[selection]
-        newFeature = raw_input('''
+        newFeature = helpers.user_input('''
 -- New Feature --
 Please give your new feature a name: ''')
-        newAction = raw_input('''
+        newAction = helpers.user_input('''
 What would you like to call the action? ''')
 
         template = '''import messages as msg

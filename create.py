@@ -2,7 +2,7 @@
 #
 #	HEADER
 #
-import sys, re, subprocess, os
+import sys, re, subprocess, os, helpers
 
 from scab import scab as s
 
@@ -17,9 +17,9 @@ def execute():
 	t.scan('{}bash-tools/bacon/template'.format(origin))
 	# t.reIgnore('(/\.+)|(create\.py)')
 	t.record()
-	name = raw_input("Give your tool a name: ")
+	name = helpers.user_input("Give your tool a name: ")
 	t.build('{}/bash-tools/{}'.format(origin, name))
-	alias = raw_input("What would you like the alias to be? ")
+	alias = helpers.user_input("What would you like the alias to be? ")
 
 	def write_to_bashrc(FILEPATH, ALIAS, EXECUTE):
 		if not os.path.exists(FILEPATH):
