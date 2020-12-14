@@ -4,9 +4,10 @@ actionList = json.loads(helpers.read_file('{}/{}'.format(helpers.self_path(), 'a
 
 def statusMessage():
 	if len(actionList['actions']) > 0:
+		print("")
 		for item in actionList['actions']:
-			print('''\n[ {} {} ]\t\t{}
-'''.format(actionList['alias'], item['name'], item['description']))
+			print('''[ {} {} ]\t\t{}'''.format(actionList['alias'], item['name'], item['description']))
+		print("")
 	else:
 		print('''
 <tool-name> is working successfully!
