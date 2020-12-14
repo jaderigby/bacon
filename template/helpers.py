@@ -3,7 +3,7 @@ from settings import settings
 
 profilePath = settings['profile_url'] + settings['profile']
 
-# path for current user. Example: "cd ~/"
+# path for current user. Example: "~/"
 def root():
 	import os
 	return os.path.expanduser('~/')
@@ -31,14 +31,16 @@ def write_file(FILEPATH, DATA):
 	FILE.write(DATA)
 	FILE.close()
 
-def run_command(CMD):
+def run_command(CMD, option = True):
 	import subprocess
-	print('\n============== Running Command: {}\n'.format(CMD))
+	if option:
+		print('\n============== Running Command: {}\n'.format(CMD))
 	subprocess.call(CMD, shell=True)
 
-def run_command_output(CMD):
+def run_command_output(CMD, option = True):
 	import subprocess
-	print('\n============== Outputting Command: {}\n'.format(CMD))
+	if option:
+		print('\n============== Outputting Command: {}\n'.format(CMD))
 	result = False
 	if CMD != None:
 		process = subprocess.Popen(CMD, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
