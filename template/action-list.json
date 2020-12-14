@@ -1,5 +1,6 @@
 {
      "toolName" : "<tool-name>"
+    ,"alias" : "<alias>"
     ,"actions" : [
     ]
 }

@@ -48,6 +48,7 @@ def execute():
 	replace_generic_reference_with_actual(origin + 'bash-tools/'+ name +'/settings.py', name, '<tool-name>')
 	replace_generic_reference_with_actual(origin + 'bash-tools/'+ name +'/messages.py', name, '<tool-name>')
 	replace_generic_reference_with_actual(origin + 'bash-tools/'+ name +'/action-list.json', name, '<tool-name>')
+	replace_generic_reference_with_actual(origin + 'bash-tools/'+ name +'/action-list.json', alias, '<alias>')
 
 	print('''
 [ Process Complete ]
