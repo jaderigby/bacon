@@ -1,6 +1,3 @@
 def user_input(STRING):
-    try: 
-        input = raw_input
-    except NameError: 
-        pass
+    from six.moves import input
     return input(STRING)
