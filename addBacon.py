@@ -22,7 +22,7 @@ def execute(ROOT_DIR):
         match = re.search(pat, item)
         if not match:
             index += 1
-            print("[{}] {}").format(index, item)
+            print("[{}] {}").format(index, item))
             newList.append(item)
     selection = raw_input('''
 [x] Exit
