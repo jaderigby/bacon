@@ -140,7 +140,7 @@ class scab:
 			if not match:
 				reFileList.append(i)
 		print("")
-		print("Number of Matches: {}".format(regexCount)
+		print("Number of Matches: {}".format(regexCount))
 		print("")
 		self.contentsFolders = reFolderList
 		self.contentsFiles = reFileList
