@@ -14,11 +14,18 @@ def self_path():
 	return os.path.dirname(os.path.realpath(__file__))
 
 def load_profile():
-	return json.loads(read_file(profilePath))
+	import os
+	if os.path.exists(profilePath):
+		return json.loads(read_file(profilePath))
+	else:
+		return json.loads("{}")
 
 def get_settings():
 	profile = load_profile()
-	return profile['settings']
+	if 'settings' in profile:
+		return profile['settings']
+	else:
+		return False
 
 def read_file(FILEPATH):
 	FILE = open(FILEPATH, 'r')
