@@ -12,20 +12,25 @@ def execute():
 
 	settings = helpers.get_settings()
 
+	utilitiesPrimeDirectory = 'bash-tools'
 	if settings:
-		utilities_prime_directory = settings['utilitiesPrimeDirectory']
-	else:
-		utilities_prime_directory = 'bash-tools'
+		if 'utilitiesPrimeDirectory' in settings:
+			utilitiesPrimeDirectory = settings['utilitiesPrimeDirectory']
+
+	rcPath = '.bashrc'
+	if settings:
+		if 'rcPath' in settings:
+			rcPath = settings['rcPath']
 
 	relativeUserPath = os.path.expanduser('~')
 	origin = '{}/Documents/'.format(relativeUserPath)
 
 	t = s()
-	t.scan('{}{}/bacon/template'.format(origin, utilities_prime_directory))
+	t.scan('{}{}/bacon/template'.format(origin, utilitiesPrimeDirectory))
 	# t.reIgnore('(/\.+)|(create\.py)')
 	t.record()
 	name = helpers.user_input("Give your tool a name: ")
-	t.build('{}/{}/{}'.format(origin, utilities_prime_directory, name))
+	t.build('{}/{}/{}'.format(origin, utilitiesPrimeDirectory, name))
 	alias = helpers.user_input("What would you like the alias to be? ")
 
 	def write_to_bashrc(FILEPATH, ALIAS, EXECUTE):
@@ -48,14 +53,14 @@ def execute():
 		FILE.write(data)
 		FILE.close()
 
-	executionString = '"python {}{}/{}/actions.py"'.format(origin, utilities_prime_directory, name)
+	executionString = '"python {}{}/{}/actions.py"'.format(origin, utilitiesPrimeDirectory, name)
 
-	write_to_bashrc('{}{}/.bashrc'.format(origin, utilities_prime_directory), alias, executionString)
+	write_to_bashrc('{}{}/{}'.format(origin, utilitiesPrimeDirectory, rcPath), alias, executionString)
 
-	replace_generic_reference_with_actual('{}{}/{}/settings.py'.format(origin, utilities_prime_directory, name), name, '<tool-name>')
-	replace_generic_reference_with_actual('{}{}/{}/messages.py'.format(origin, utilities_prime_directory, name), name, '<tool-name>')
-	replace_generic_reference_with_actual('{}{}/{}/action-list.json'.format(origin, utilities_prime_directory, name), name, '<tool-name>')
-	replace_generic_reference_with_actual('{}{}/{}/action-list.json'.format(origin, utilities_prime_directory, name), alias, '<alias>')
+	replace_generic_reference_with_actual('{}{}/{}/settings.py'.format(origin, utilitiesPrimeDirectory, name), name, '<tool-name>')
+	replace_generic_reference_with_actual('{}{}/{}/messages.py'.format(origin, utilitiesPrimeDirectory, name), name, '<tool-name>')
+	replace_generic_reference_with_actual('{}{}/{}/action-list.json'.format(origin, utilitiesPrimeDirectory, name), name, '<tool-name>')
+	replace_generic_reference_with_actual('{}{}/{}/action-list.json'.format(origin, utilitiesPrimeDirectory, name), alias, '<alias>')
 
 	print('''
 [ Process Complete ]
