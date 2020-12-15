@@ -12,7 +12,7 @@ def execute():
 
 	settings = helpers.get_settings()
 
-	utilitiesPrimeDirectory = 'bash-tools'
+	utilitiesPrimeDirectory = 'bacon-bits'
 	if settings:
 		if 'utilitiesPrimeDirectory' in settings:
 			utilitiesPrimeDirectory = settings['utilitiesPrimeDirectory']
@@ -21,9 +21,14 @@ def execute():
 	if settings:
 		if 'rcPath' in settings:
 			rcPath = settings['rcPath']
+	
+	homeDir = 'Documents'
+	if settings:
+		if 'homeDir' in settings:
+			homeDir = settings['homeDir']
 
 	relativeUserPath = os.path.expanduser('~')
-	origin = '{}/Documents/'.format(relativeUserPath)
+	origin = '{}/{}/'.format(relativeUserPath, homeDir)
 
 	t = s()
 	t.scan('{}{}/bacon/template'.format(origin, utilitiesPrimeDirectory))
