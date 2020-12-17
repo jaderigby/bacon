@@ -8,31 +8,31 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 __Note:__ If you would like to use the default setup, you can skip to _Section 2_ and run the commands listed.
 
-First, create a directory called "bash-tools".  Typically, this lives inside your "Documents" folder, but you can create it wherever you like.  Next, `cd` into the `bash-tools` directory. So, for example:
+First, create a directory called "bacon-bits".  Typically, this lives inside your "Documents" folder, but you can create it wherever you like.  Next, `cd` into the `bacon-bits` directory. So, for example:
 
 ```
-cd ~/Documents && mkdir bash-tools
-cd bash-tools
+cd ~/Documents && mkdir bacon-bits
 ```
 
-Now, clone the bacon utility inside your `bash-tools` directory.
+Now, clone the bacon utility inside your `bacon-bits` directory.
 
 ```
+cd bacon-bits
 git clone git@github.com:jaderigby/bacon.git
 ```
 
 Then, create a `.bashrc` file and add the following:
 
 ```
-alias bacon="python ~/Documents/bash-tools/bacon/baconActions.py"
+alias bacon="python ~/Documents/bacon-bits/bacon/baconActions.py"
 ```
 
-__Note:__ If you created your `bash-tools` file anywhere else, other than the `Documents` folder, you will need to modify the path above to point to wherever you installed bacon.
+__Note:__ If you created your `bacon-bits` file anywhere else, other than the `Documents` folder, you will need to modify the path above to point to wherever you installed bacon.
 
-Once your .bashrc file is setup, add the following to your `.bash_profile` file.  If you do not have a `.bash_profile` file, you can add it by going to your user's root directory and creating a file called `.bash_profile`:
+Once your .bashrc file is setup, add the following to your `.bash_profile` file.  (__Note:__ If you do not have a `.bash_profile` file, you can create one by going to your user's root directory and creating a file called `.bash_profile`):
 
 ```
-source ~/Documents/bash-tools/.bashrc
+source ~/Documents/bacon-bits/.bashrc
 ```
 
 Finally, do:
@@ -48,12 +48,12 @@ __You are set!__
 If you are using the default setup, ie placing it inside the `Documents` folder, you can run the following commands for your setup:
 
 ```
-cd ~/Documents && mkdir bash-tools
-cd bash-tools
+cd ~/Documents && mkdir bacon-bits
+cd bacon-bits
 git clone git@github.com:jaderigby/bacon.git
-cd ~/Documents/bash-tools && touch .bashrc
-echo "alias bacon=\"python ~/Documents/bash-tools/bacon/baconActions.py\"" >> .bashrc
-echo "source ~/Documents/bash-tools/.bashrc" >> ~/.bash_profile
+touch .bashrc
+echo "alias bacon=\"python ~/Documents/bacon-bits/bacon/baconActions.py\"" >> .bashrc
+echo "source ~/Documents/bacon-bits/.bashrc" >> ~/.bash_profile
 source ~/.bash_profile
 ```
 
@@ -75,23 +75,23 @@ When adding an action to an existing utility, do:
 bacon add
 ```
 
-This will scan the `bash-tools` directory and list all folders, ie all utilities, for selection.  Select the utility which you would like to add an action to.
+This will scan the `bacon-bits` directory and list all folders, ie all utilities, for selection.  Select the utility which you would like to add an action to.
 
 Utilities observe the following behavior:
 
-- Typing the name of the utility - or rather - its alias, shows the list of possible commands/attributes.
+- Typing the name of the utility - or rather, its alias - shows the list of possible commands/attributes.
 
 - When invoking a utility, each utility follows the pattern: `<utility-name> <action>`
 
-- Utilities come with a handful of `helpers` when writing your utility, that make writing utilities easier.  These are common `helper` functions covering common actions that a typical utility might use.
+- Utilities come with a handful of `helpers` when writing your utility, that make writing utilities faster and easier.  These are common `helper` functions covering common actions that a typical utility might use.
 
 ## Terminology ##
 
-__Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking said script.
+__Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking the scripts.
 
 __Action:__ A command added to a utility, such as `bacon add` where `add` is the action.
 
-__Bacon:__ A simple utility that makes everything better!
+__Bacon:__ A simple utility that makes everything taste better!
 
 ## Structure ##
 
@@ -112,10 +112,10 @@ The helpers file is where you can include the functions that your utility uses. 
 - __root()__ = returns the user's root directory path, such as doing `cd ~/`
 - __self_path()__ = returns the directory path for the utility.
 - __load_profile()__ & __get_settings()__ = these two functions are set up specifically for calling the settings.  If you want to use the settings in an action file, uncomment the commented settings line at the top of the file.
-- __read_file()__ = opens a specified file
-- __write_file()__ = writes to a specified file the data passed in as the second argument
-- __run_command()__ = runs a specified bash command. Also, it has an optional secondary argument which accepts a boolean, to supress the output message. Example: `run_command('pwd', False)`
-- __run_command_output()__ = runs a specified command and then returns the output.  Also, it has an optional secondary argument which accepts a boolean, to supress the output message. Example: `run_command_output('pwd', False)`
+- __read_file()__ = opens a specified file.
+- __write_file()__ = writes to a specified file with the data being passed in as the second parameter.
+- __run_command()__ = runs a specified bash command. Also, it has an optional secondary parameter which accepts a boolean, to supress the output message. Example: `run_command('pwd', False)`
+- __run_command_output()__ = runs a specified command and then returns the output.  Also, it has an optional secondary parameter which accepts a boolean, to supress the output message. Example: `run_command_output('pwd', False)`
 - __titled()__ = converts any PascalCased/camelCased string to a title string, ie, a string with spaces and capitals at the beginning of each word.
 - __kabob()__ = converts any PascalCased/camelCased string to a lowercase string seperated by dashes.
 - __user_selection()__ = converts a specified list to an interactive selection, where each list item is numbered.  The first argument determins the string given as the input prompt.  If "x" is selected, or enter is pressed before a selection is made, then the function returns the string "exit".  Any other selection that is not a number, returns the error "Please select a valid entry" and allows the user to try again.

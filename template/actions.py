@@ -8,6 +8,8 @@ try:
 except:
 	action = None
 
+args = sys.argv[2:]
+
 if action == 'status' or action == None:
 	status.execute()
 

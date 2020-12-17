@@ -118,3 +118,6 @@ def user_selection(DESCRIPTION, LIST):
 		else:
 			print("\nPlease select a valid entry...")
 	return finalAnswer
+
+def arguments(ARGS, DIVIDER=':'):
+	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
