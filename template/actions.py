@@ -10,8 +10,11 @@ except:
 
 args = sys.argv[2:]
 
-if action == 'status' or action == None:
+if action == None:
 	status.execute()
+
+elif action == 'profile':
+	helpers.profile()
 
 elif action == 'action':
 	# You will want to change the name to something specific, when developing
