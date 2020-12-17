@@ -28,10 +28,10 @@ def execute():
 	relativeUserPath = os.path.expanduser('~')
 	origin = '{}/{}/'.format(relativeUserPath, homeDir)
 
-	name = helpers.user_input("Give your tool a name: ")
+	name = helpers.user_input("\nGive your tool a name [Eg: BaconUtil]: ")
 	helpers.run_command('cp -r {ORIGIN}{UTILITIES_PRIME_DIRECTORY}/bacon/template {ORIGIN}{UTILITIES_PRIME_DIRECTORY}/{NAME}'.format(ORIGIN= origin, UTILITIES_PRIME_DIRECTORY= utilitiesPrimeDirectory, NAME= name), False)
 
-	alias = helpers.user_input("What would you like the alias to be? ")
+	alias = helpers.user_input("\nWhat would you like the alias to be? ")
 
 	def write_to_bashrc(FILEPATH, ALIAS, EXECUTE):
 		if not os.path.exists(FILEPATH):
@@ -61,6 +61,11 @@ def execute():
 	replace_generic_reference_with_actual('{}{}/{}/messages.py'.format(origin, utilitiesPrimeDirectory, name), name, '<tool-name>')
 	replace_generic_reference_with_actual('{}{}/{}/action-list.json'.format(origin, utilitiesPrimeDirectory, name), name, '<tool-name>')
 	replace_generic_reference_with_actual('{}{}/{}/action-list.json'.format(origin, utilitiesPrimeDirectory, name), alias, '<alias>')
+
+	print('''
+NAME:           {NAME}
+ALIAS:          {ALIAS}
+LOCATION:       {ORIGIN}{UTILITIES_PRIME_DIRECTORY}/{NAME}''').format(NAME= name, ALIAS= alias, ORIGIN= origin, UTILITIES_PRIME_DIRECTORY= utilitiesPrimeDirectory)
 
 	print('''
 [ Process Complete ]

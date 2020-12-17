@@ -35,7 +35,7 @@ PROJECT: {}''').format(newList[selection])
         fullPath = ROOT_DIR + '/' + newList[selection]
         newFeature = helpers.user_input('''
 -- New Feature --
-Please give your new feature a name: ''')
+Please give your new feature a name [Eg: OpenFile]: ''')
         newAction = helpers.user_input('''
 What would you like to call the action? ''')
 
