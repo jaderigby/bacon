@@ -6,9 +6,14 @@ def execute(ARGS):
 
 	name = helpers.self_path().split('/')[-1]
 	fullPath = helpers.self_path()
+	titleString = "Action"
+	if argDict:
+		if 'args' in argDict:
+			if argDict['args'] == 'true':
+				titleString = "Action With Arguments"
 	newFeature = helpers.user_input('''
--- New Action --
-Please give your new action a name [Eg: OpenFile]: ''')
+-- New {} --
+Please give your new action a name [Eg: OpenFile]: '''.format(titleString))
 	newAction = helpers.user_input('''
 What would you like to call the action? ''')
 
