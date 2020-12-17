@@ -4,8 +4,6 @@
 #
 import sys, re, subprocess, os, helpers
 
-from scab import scab as s
-
 #===================================================================
 
 def execute():
@@ -30,12 +28,9 @@ def execute():
 	relativeUserPath = os.path.expanduser('~')
 	origin = '{}/{}/'.format(relativeUserPath, homeDir)
 
-	t = s()
-	t.scan('{}{}/bacon/template'.format(origin, utilitiesPrimeDirectory))
-	# t.reIgnore('(/\.+)|(create\.py)')
-	t.record()
 	name = helpers.user_input("Give your tool a name: ")
-	t.build('{}/{}/{}'.format(origin, utilitiesPrimeDirectory, name))
+	helpers.run_command('cp -r {ORIGIN}{UTILITIES_PRIME_DIRECTORY}/bacon/template {ORIGIN}{UTILITIES_PRIME_DIRECTORY}/{NAME}'.format(ORIGIN= origin, UTILITIES_PRIME_DIRECTORY= utilitiesPrimeDirectory, NAME= name), False)
+
 	alias = helpers.user_input("What would you like the alias to be? ")
 
 	def write_to_bashrc(FILEPATH, ALIAS, EXECUTE):

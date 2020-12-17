@@ -26,3 +26,9 @@ def read_file(FILEPATH):
 	data = FILE.read()
 	FILE.close()
 	return data
+
+def run_command(CMD, option = True):
+	import subprocess
+	if option:
+		print('\n============== Running Command: {}\n'.format(CMD))
+	subprocess.call(CMD, shell=True)
