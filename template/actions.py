@@ -15,7 +15,7 @@ if action == None:
 	msg.statusMessage()
 
 elif action == '-action':
-	addAction.execute()
+	addAction.execute(args)
 
 elif action == '-profile':
 	helpers.profile()

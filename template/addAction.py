@@ -1,7 +1,10 @@
 import messages as msg
 import os, re, json, helpers
 
-def execute():
+def execute(ARGS):
+	argDict = helpers.arguments(ARGS)
+
+	print(argDict)
 	name = helpers.self_path().split('/')[-1]
 	fullPath = helpers.self_path()
 	newFeature = helpers.user_input('''
@@ -10,12 +13,21 @@ Please give your new action a name [Eg: OpenFile]: ''')
 	newAction = helpers.user_input('''
 What would you like to call the action? ''')
 
-	template = '''import messages as msg
+	basicSnippet = '''import messages as msg
 
 # settings = helpers.get_settings()
 
 def execute():
-    msg.example()
+	msg.example()
+'''
+	argSnippet = '''import messages as msg
+import helpers
+
+# settings = helpers.get_settings()
+
+def execute(ARGS):
+	argDict = helpers.arguments(ARGS)
+	print(argDict)
 '''
 	finalPath = helpers.self_path() + '/' + newFeature + '.py'
 	print('''
@@ -23,14 +35,30 @@ NAME:           {}
 NEW MODULE:     {}
 NEW ACTION:     {}
 LOCATION:       {}''').format(name, newFeature, newAction, finalPath)
+	template = basicSnippet
+	if argDict:
+		if 'args' in argDict:
+			if argDict['args'] == 'True':
+				template = argSnippet
 	helpers.write_file(finalPath, template)
 	data = helpers.read_file(fullPath + '/actions.py')
 	data = data.replace('# new imports start here', '''import {}
 # new imports start here'''.format(newFeature))
-	newContent = '''
+
+	basicContent = '''
 elif action == "{newAction}":
-    {newFeature}.execute()
+	{newFeature}.execute()
 # new actions start here'''.format(newFeature=newFeature, newAction=newAction)
+	argContent = '''
+elif action == "{newAction}":
+	{newFeature}.execute(args)
+# new actions start here'''.format(newFeature=newFeature, newAction=newAction)
+
+	newContent = basicContent
+	if argDict:
+		if 'args' in argDict:
+			if argDict['args'] == 'True':
+				newContent = argContent
 	data = data.replace("# new actions start here", newContent)
 	helpers.write_file(fullPath + '/actions.py', data)
 	actionData = json.loads(helpers.read_file(fullPath + '/action-list.json'))
