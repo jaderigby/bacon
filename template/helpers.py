@@ -90,6 +90,9 @@ def kabob(NAME):
 	str = titled(NAME)
 	return str.replace(' ', '-').lower()
 
+def user_input(STRING):
+	return raw_input(STRING)
+
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
 def user_selection(DESCRIPTION, LIST):
 	import re

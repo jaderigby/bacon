@@ -1,4 +1,5 @@
-import sys, action, status, helpers
+import sys, addAction, helpers
+import messages as msg
 # new imports start here
 
 # settings = helpers.get_settings()
@@ -11,12 +12,11 @@ except:
 args = sys.argv[2:]
 
 if action == None:
-	status.execute()
+	msg.statusMessage()
 
-elif action == 'profile':
+elif action == '-action':
+	addAction.execute()
+
+elif action == '-profile':
 	helpers.profile()
-
-elif action == 'action':
-	# You will want to change the name to something specific, when developing
-	action.execute()
 # new actions start here
