@@ -37,7 +37,7 @@ LOCATION:       {}''').format(name, newFeature, newAction, finalPath)
 	template = basicSnippet
 	if argDict:
 		if 'args' in argDict:
-			if argDict['args'] == 'True':
+			if argDict['args'] == 'true':
 				template = argSnippet
 	helpers.write_file(finalPath, template)
 	data = helpers.read_file(fullPath + '/actions.py')
@@ -56,7 +56,7 @@ elif action == "{newAction}":
 	newContent = basicContent
 	if argDict:
 		if 'args' in argDict:
-			if argDict['args'] == 'True':
+			if argDict['args'] == 'true':
 				newContent = argContent
 	data = data.replace("# new actions start here", newContent)
 	helpers.write_file(fullPath + '/actions.py', data)
