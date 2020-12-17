@@ -4,7 +4,6 @@ import os, re, json, helpers
 def execute(ARGS):
 	argDict = helpers.arguments(ARGS)
 
-	print(argDict)
 	name = helpers.self_path().split('/')[-1]
 	fullPath = helpers.self_path()
 	newFeature = helpers.user_input('''
