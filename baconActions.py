@@ -1,4 +1,4 @@
-import sys, create, addBacon
+import sys, create
 
 # settings = helpers.get_settings()
 
@@ -10,7 +10,6 @@ except:
 if action == None:
 	print('''
 [ new ]		Create a new item
-[ add ]		Add an action
 ''')
 
 elif action == 'new':
