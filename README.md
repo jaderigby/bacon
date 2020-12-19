@@ -113,6 +113,8 @@ If you want to create a profile file for your utility, do:
 utilityName -profile
 ```
 
+### Be Sure To Source! ###
+
 Each time you create a new utility (which adds a new alias to your `bacon-bits/.bashrc` file,) you will want to source the `.bashrc` file:
 
 ```
@@ -198,7 +200,7 @@ The helpers file is where you can include the functions that your utility uses. 
 - __arguments()__ = use this to create a dictionary object for multiple command-line arguments.
 - __profile()__ = creates a new profile folder and profile file wthen invoked.
 
-## Bacon Profile ##
+## The Bacon Profile File ##
 
 In addition to your utility having profiles, bacon has support for a `profile.py` file, as well.  In fact, if you are installing bacon anywhere else other than `Documents`, you can use a profile.py file to make it work.  Observe the following:
 
