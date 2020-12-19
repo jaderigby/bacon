@@ -1,6 +1,6 @@
 # Bacon #
 
-__Note:__ These instructions are written for mac and unix only, atm.
+__Note:__ These instructions target mac and unix setups, atm.
 
 Bacon is a utility for building other utilities. It helps generate a template for creating quick utilities run in bash (using alias commands) and written in Python.  In short, Bacon makes everything better!
 
