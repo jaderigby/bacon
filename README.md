@@ -147,6 +147,8 @@ This should go at the top of your file.  Once in place, do:
 source ~/.zshrc
 ```
 
+__Note:__ Be sure to change the paths in the snippet to reflect your setup, if you have anything other than the default Documents folder setup, etc.
+
 Now, whenever you add a new bacon utility, run:
 
 ```
@@ -218,7 +220,7 @@ To use these, create a new directory inside of the `bacon` directory, and call i
 }
 ```
 
-Then, if you want to use one of the options above, such as `homeDir`, you would add the following:
+Then, if you want to use one of the options above, such as `homeDir`, you would add it like so:
 
 ```
 {
