@@ -4,12 +4,16 @@ import os, re, json, helpers
 def execute(ARGS):
 	argDict = helpers.arguments(ARGS)
 
-	print(argDict)
 	name = helpers.self_path().split('/')[-1]
 	fullPath = helpers.self_path()
+	titleString = "Action"
+	if argDict:
+		if 'args' in argDict:
+			if argDict['args'] == 'true':
+				titleString = "Action With Arguments"
 	newFeature = helpers.user_input('''
--- New Action --
-Please give your new action a name [Eg: OpenFile]: ''')
+-- New {} --
+Please give your new action a name [Eg: OpenFile]: '''.format(titleString))
 	newAction = helpers.user_input('''
 What would you like to call the action? ''')
 
@@ -38,7 +42,7 @@ LOCATION:       {}''').format(name, newFeature, newAction, finalPath)
 	template = basicSnippet
 	if argDict:
 		if 'args' in argDict:
-			if argDict['args'] == 'True':
+			if argDict['args'] == 'true':
 				template = argSnippet
 	helpers.write_file(finalPath, template)
 	data = helpers.read_file(fullPath + '/actions.py')
@@ -57,7 +61,7 @@ elif action == "{newAction}":
 	newContent = basicContent
 	if argDict:
 		if 'args' in argDict:
-			if argDict['args'] == 'True':
+			if argDict['args'] == 'true':
 				newContent = argContent
 	data = data.replace("# new actions start here", newContent)
 	helpers.write_file(fullPath + '/actions.py', data)
