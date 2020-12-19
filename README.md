@@ -1,5 +1,7 @@
 # Bacon #
 
+__Note:__ These instructions are written for mac and unix only, atm.
+
 Bacon is a utility for building other utilities. It helps generate a template for creating quick utilities run in bash (using alias commands) and written in Python.  In short, Bacon makes everything better!
 
 ## Setup ##
@@ -38,7 +40,7 @@ source ~/Documents/bacon-bits/.bashrc
 Finally, do:
 
 ```
-source ~/.bash_profile
+source ~/.zshrc
 ```
 
 __You are set!__
@@ -53,8 +55,8 @@ cd bacon-bits
 git clone git@github.com:jaderigby/bacon.git
 touch .bashrc
 echo "alias bacon=\"python ~/Documents/bacon-bits/bacon/baconActions.py\"" >> .bashrc
-echo "source ~/Documents/bacon-bits/.bashrc" >> ~/.bash_profile
-source ~/.bash_profile
+echo "source ~/Documents/bacon-bits/.bashrc" >> ~/.zshrc
+source ~/.zshrc
 ```
 
 ## Usage ##
@@ -69,17 +71,61 @@ bacon new
 
 This will walk you through creating a new utility.
 
-When adding an action to an existing utility, do:
+When adding an action to your utility, do:
 
 ```
-bacon add
+utilityName -action
 ```
 
-This will scan the `bacon-bits` directory and list all folders, ie all utilities, for selection.  Select the utility which you would like to add an action to.
+If you want to create a profile file for your utility, do:
 
-Utilities observe the following behavior:
+```
+utilityName -profile
+```
 
-- Typing the name of the utility - or rather, its alias - shows the list of possible commands/attributes.
+Each time you create a new utility (which adds a new alias to your `bacon-bits/.bashrc` file,) you will want to source the `.bashrc` file:
+
+```
+source <path-to-bacon-bits>/bacon-bits/.bashrc
+```
+
+### .bashrc Helper ###
+
+Another way, is to create a helper inside of your `.bashrc` file with this snippet:
+
+```
+baconFun() {
+    baconActions=~/Dropbox/bacon-bits/bacon/baconActions.py
+    if [ ! -z $1 ]; then
+        if [ $1 = "set" ]; then
+            source ~/Dropbox/bacon-bits/.bashrc
+        else
+            python $baconActions $1
+        fi
+    else
+        python $baconActions
+    fi
+}
+alias bacon="baconFun"
+```
+
+This should go at the top of your file.  Once in place, do:
+
+```
+source ~/.zshrc
+```
+
+Now, whenever you add a new bacon utility, run:
+
+```
+bacon set
+```
+
+Running the above command replaces the need to run `source <path-to-bacon-bits>/bacon-bits/.bashrc`.
+
+### Utilities Observe The Following Behavior: ###
+
+- Typing the name of the utility - or rather, its alias - shows the list of possible commands/actions.
 
 - When invoking a utility, each utility follows the pattern: `<utility-name> <action>`
 
@@ -89,9 +135,9 @@ Utilities observe the following behavior:
 
 __Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking the scripts.
 
-__Action:__ A command added to a utility, such as `bacon add` where `add` is the action.
+__Action:__ A command added to a utility, such as `bacon new` where `new` is the action.
 
-__Bacon:__ A simple utility that makes everything taste better!
+__Bacon:__ A simple utility that makes everything better!
 
 ## Structure ##
 
@@ -99,11 +145,10 @@ __Bacon:__ A simple utility that makes everything taste better!
 - __messages.py__ = where all messages are to be contained.  This keeps things clean and neat.
 - __helpers.py__ = where all common functions should live.  A typical helpers file will contain any functions not defining specific business logic.
 - __settings.py__ = where the settings definitions live.  This file typically does not need to be modified.
-- __profiles folder__ = the profiles folder is where locally-specific settings live.  Any definition specific to a particular developers setup can be defined here.  This is also where any settings or task-specific data/definitions should live.  You can have multiple profile files inside the `profiles` folder.  Change which profile file your utility points to by changing the reference in the utility's `settings.py` file.
-- __profile.py__ = an example profile file.
-- __status.py__ = the status file is simply for running the `status` attribute in order to verify setup in the beginning. This can be modified and used however you like or you may remove this file and its accompanying reference in the `actions.py` file.
-- __action-list.json__ = this is where the actions are described.  When you do `myUtility status`, this file is read, and the names and descriptions are listed. You can use this file to add descriptions for each of your utility's actions.
-- __action.py__ = an example of a typical action file.  This can also be removed, along with its reference inside the `actions.py` file.
+- __profiles folder__ = the profiles folder is where locally-specific settings live.  Any definition specific to a particular developers setup can be defined here, within a `profile.py` file.  This is also where any settings or task-specific data/definitions should live.  You can have multiple profile files inside the `profiles` folder.  Change which profile file your utility points to by changing the reference in the utility's `settings.py` file.
+- __addAction.py__ = this runs when using the `-action` command. Used to add new actions to your utility.
+- __profile.py__ = this is where locally-specific info can be stored/configured. For example, if two developers are using a utility, but have different configurations for that utility, the `profile.py` file is where these unique parts would be declared.
+- __action-list.json__ = this is where the actions are described.  When you do your utility alias with no accompanying action command, this file is read, and the names and descriptions are listed. You can use this file to add descriptions for each of your utility's actions.
 
 ## Helpers ##
 
@@ -114,8 +159,39 @@ The helpers file is where you can include the functions that your utility uses. 
 - __load_profile()__ & __get_settings()__ = these two functions are set up specifically for calling the settings.  If you want to use the settings in an action file, uncomment the commented settings line at the top of the file.
 - __read_file()__ = opens a specified file.
 - __write_file()__ = writes to a specified file with the data being passed in as the second parameter.
-- __run_command()__ = runs a specified bash command. Also, it has an optional secondary parameter which accepts a boolean, to supress the output message. Example: `run_command('pwd', False)`
+- __run_command()__ = runs a specified bash command. Also, it has an optional secondary parameter which accepts a boolean, to supress the output message. Example: `run_command('pwd', False)`. __Note:__ This can be a string or a list of single commands (each command to be chained together as a seperate item within the list, such as ['git', 'push']).
 - __run_command_output()__ = runs a specified command and then returns the output.  Also, it has an optional secondary parameter which accepts a boolean, to supress the output message. Example: `run_command_output('pwd', False)`
 - __titled()__ = converts any PascalCased/camelCased string to a title string, ie, a string with spaces and capitals at the beginning of each word.
 - __kabob()__ = converts any PascalCased/camelCased string to a lowercase string seperated by dashes.
+- __user_input__ = used to capture user inputs.
 - __user_selection()__ = converts a specified list to an interactive selection, where each list item is numbered.  The first argument determins the string given as the input prompt.  If "x" is selected, or enter is pressed before a selection is made, then the function returns the string "exit".  Any other selection that is not a number, returns the error "Please select a valid entry" and allows the user to try again.
+- __arguments()__ = use this to create a dictionary object for multiple command-line arguments.
+- __profile()__ = creates a new profile folder and profile file wthen invoked.
+
+## Bacon Profile ##
+
+In addition to your utility having profiles, bacon has support for a `profile.py` file, as well.  In fact, if you are installing bacon anywhere else other than `Documents`, you can use a profile.py file to make it work.  Observe the following:
+
+- __homeDir__ = to change the location to anything other than`Documents`, such as `"homeDir" : "Development"`. This would reference the `Development` directory, rather than the default `Documents` directory.
+- __utilitiesPrimeDirectory__ = to change the bacon home folder to anything other than `bacon-bits`.
+- __rcPath__ = to change the `.bashrc` reference to something else, such as `.baconrc`
+
+To use these, create a new directory inside of the `bacon` directory, and call it `profiles`.  Then inside the `profiles` directory, create a file called `profile.py`.  Add the following to this file:
+
+```
+{
+    "settings" : {
+
+    }
+}
+```
+
+Then, if you want to use one of the options above, such as `homeDir`, you would add the following:
+
+```
+{
+    "settings" : {
+        "homeDir" : "Development"
+    }
+}
+```
