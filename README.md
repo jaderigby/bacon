@@ -63,19 +63,49 @@ source ~/.zshrc
 
 Type `bacon` in order to see the options.
 
+### Create A New Utility ###
+
 When creating a new utility, do:
 
 ```
 bacon new
 ```
 
-This will walk you through creating a new utility.
+This command will walk you through creating a new utility.
 
-When adding an action to your utility, do:
+### Adding An Action ###
+
+To add a new action, do:
 
 ```
 utilityName -action
 ```
+
+To add a new action that supports parameters, do:
+
+```
+utilityName -action args:true
+```
+
+This will create a new action which can receive additional parameters as key/value pairs, seperated by a colon, such as:
+
+```
+myUtility create name:test
+```
+
+The above command will result in the following object being assigned to the "argDict" variable:
+
+```
+{"name" : "test"}
+```
+
+This can be consumed as `argDict['name']` resulting in the value `test`, such as:
+
+```
+helpers.write_file(argDict['name'] + '.txt', contents)
+```
+
+### Profile Command ###
 
 If you want to create a profile file for your utility, do:
 
@@ -91,7 +121,7 @@ source <path-to-bacon-bits>/bacon-bits/.bashrc
 
 ### .bashrc Helper ###
 
-Another way, is to create a helper inside of your `.bashrc` file with this snippet:
+Another way, is to create a helper inside of your `.bashrc` file using the following snippet:
 
 ```
 baconFun() {
@@ -133,7 +163,7 @@ Running the above command replaces the need to run `source <path-to-bacon-bits>/
 
 ## Terminology ##
 
-__Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking the scripts.
+__Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking those scripts.
 
 __Action:__ A command added to a utility, such as `bacon new` where `new` is the action.
 
