@@ -202,7 +202,7 @@ The helpers file is where you can include the functions that your utility uses. 
 
 ## The Bacon Profile File ##
 
-In addition to your utility having profiles, bacon has support for a `profile.py` file, as well.  In fact, if you are installing bacon anywhere else other than `Documents`, you can use a profile.py file to make it work.  Observe the following:
+In addition to your utility having profiles, bacon has support for its own `profile.py` file, as well.  In fact, if you are installing bacon anywhere else other than `Documents`, you can use the profile.py file to make it work.  Observe the following:
 
 - __homeDir__ = to change the location to anything other than`Documents`, such as `"homeDir" : "Development"`. This would reference the `Development` directory, rather than the default `Documents` directory.
 - __utilitiesPrimeDirectory__ = to change the bacon home folder to anything other than `bacon-bits`.
