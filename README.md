@@ -127,10 +127,10 @@ Another way, is to create a helper inside of your `.bashrc` file using the follo
 
 ```
 baconFun() {
-    baconActions=~/Dropbox/bacon-bits/bacon/baconActions.py
+    baconActions=~/Documents/bacon-bits/bacon/baconActions.py
     if [ ! -z $1 ]; then
         if [ $1 = "set" ]; then
-            source ~/Dropbox/bacon-bits/.bashrc
+            source ~/Documents/bacon-bits/.bashrc
         else
             python $baconActions $1
         fi
@@ -141,13 +141,13 @@ baconFun() {
 alias bacon="baconFun"
 ```
 
+__Note:__ Be sure to change the paths in the snippet to reflect your setup, if you have anything other than the default Documents folder setup, etc.
+
 This should go at the top of your file.  Once in place, do:
 
 ```
 source ~/.zshrc
 ```
-
-__Note:__ Be sure to change the paths in the snippet to reflect your setup, if you have anything other than the default Documents folder setup, etc.
 
 Now, whenever you add a new bacon utility, run:
 
