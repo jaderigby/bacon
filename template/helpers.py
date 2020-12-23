@@ -38,11 +38,26 @@ def write_file(FILEPATH, DATA):
 	FILE.write(DATA)
 	FILE.close()
 
-def run_command(CMD, option = True):
+def run_command_list(LIST, option = True):
+	import subprocess
+	str = ''
+	for item in LIST:
+		str += (' ' + item)
+	if option:
+		print('\n============== Running Command: {}\n'.format(str))
+	subprocess.call(LIST)
+
+def run_command_string(CMD, option = True):
 	import subprocess
 	if option:
 		print('\n============== Running Command: {}\n'.format(CMD))
 	subprocess.call(CMD, shell=True)
+
+def run_command(CMD, option = True):
+	if isinstance(CMD, list):
+		run_command_list(CMD, option)
+	else:
+		run_command_string(CMD, option)
 
 def run_command_output(CMD, option = True):
 	import subprocess
@@ -93,6 +108,21 @@ def kabob(NAME):
 def user_input(STRING):
 	return raw_input(STRING)
 
+def decorate(COLOR, STRING):
+	bcolors = {
+		 'lilac' : '\033[95m'
+		,'blue' : '\033[94m'
+		,'cyan' : '\033[96m'
+		,'green' : '\033[92m'
+		,'yellow' : '\033[93m'
+		,'red' : '\033[91m'
+		,'bold' : '\033[1m'
+		,'underline' : '\033[4m'
+		,'endc' : '\033[0m'
+	}
+
+	return bcolors[COLOR] + STRING + bcolors['endc']
+
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
 def user_selection(DESCRIPTION, LIST):
 	import re
@@ -133,3 +163,5 @@ def profile():
 		run_command('mkdir {}/profiles'.format(utilDir), False)
 		write_file(utilDir + '/profiles/profile.py', snippet)
 		print("\n[ Process Completed ]\n")
+
+# custom helpers go here
