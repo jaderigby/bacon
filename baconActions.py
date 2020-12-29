@@ -10,7 +10,6 @@ except:
 if action == None:
 	print('''
 [ new ]		Create a new item
-[ export ]	Export a single action
 ''')
 
 elif action == 'new':
