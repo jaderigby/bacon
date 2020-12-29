@@ -14,7 +14,3 @@ if action == None:
 
 elif action == 'new':
 	create.execute()
-
-elif action == 'add':
-	origin = str(sys.argv[0].replace('/bacon/baconActions.py', ''))
-	addBacon.execute(origin)
