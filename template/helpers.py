@@ -34,30 +34,20 @@ def read_file(FILEPATH):
 	return data
 
 def write_file(FILEPATH, DATA):
-	FILE = open(FILEPATH, 'w')
-	FILE.write(DATA)
-	FILE.close()
-
-def run_command_list(LIST, option = True):
-	import subprocess
-	str = ''
-	for item in LIST:
-		str += (' ' + item)
-	if option:
-		print('\n============== Running Command: {}\n'.format(str))
-	subprocess.call(LIST)
-
-def run_command_string(CMD, option = True):
-	import subprocess
-	if option:
-		print('\n============== Running Command: {}\n'.format(CMD))
-	subprocess.call(CMD, shell=True)
+	with open(FILEPATH, 'w') as f: f.write(DATA)
 
 def run_command(CMD, option = True):
+	import subprocess
+	shellStatus = True
 	if isinstance(CMD, list):
-		run_command_list(CMD, option)
-	else:
-		run_command_string(CMD, option)
+		shellStatus = False
+		str = ''
+		for item in CMD:
+			str += (' ' + item)
+		CMD = str
+	if option:
+		print('\n============== Running Command: {}\n'.format(str))
+	subprocess.call(CMD, shell=shellStatus)
 
 def run_command_output(CMD, option = True):
 	import subprocess
@@ -76,38 +66,6 @@ def run_command_output(CMD, option = True):
 
 	return result
 
-# returns PascalCased/camelCased strings as strings with spaces. Acronyms, such as NASASatellite will resolve to "NASA Satellite"
-# Be advised: does not account for numbers
-def titled(NAME):
-	import re
-	charList = []
-	pat = re.compile('[A-Z]')
-	nameList = list(NAME)
-	for i, char in enumerate(nameList):
-		if (i + 1 < len(nameList) and i - 1 >= 0):
-			up_ahead = nameList[i + 1]
-			from_behind = nameList[i - 1]
-		else:
-			up_ahead = ''
-			from_behind = ''
-		if pat.match(char) and i != 0:
-			if pat.match(from_behind) and pat.match(up_ahead):
-				charList.append(char)
-			else:
-				charList.append(' ')
-				charList.append(char)
-		else:
-			charList.append(char)
-	return ''.join(charList)
-
-# processes string through titled function above; then, replaces spaces with dashes, such as: "NASA Satellite" to "nasa-satellite"
-def kabob(NAME):
-	str = titled(NAME)
-	return str.replace(' ', '-').lower()
-
-def user_input(STRING):
-	return raw_input(STRING)
-
 def decorate(COLOR, STRING):
 	bcolors = {
 		 'lilac' : '\033[95m'
@@ -122,6 +80,9 @@ def decorate(COLOR, STRING):
 	}
 
 	return bcolors[COLOR] + STRING + bcolors['endc']
+
+def user_input(STRING):
+	return raw_input(STRING)
 
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
 def user_selection(DESCRIPTION, LIST):
@@ -152,6 +113,35 @@ def user_selection(DESCRIPTION, LIST):
 			print("\nPlease select a valid entry...")
 	return finalAnswer
 
+# returns PascalCased/camelCased strings as strings with spaces. Acronyms, such as NASASatellite will resolve to "NASA Satellite"
+# Be advised: does not account for numbers
+def titled(NAME):
+	import re
+	charList = []
+	pat = re.compile('[A-Z]')
+	nameList = list(NAME)
+	for i, char in enumerate(nameList):
+		if (i + 1 < len(nameList) and i - 1 >= 0):
+			up_ahead = nameList[i + 1]
+			from_behind = nameList[i - 1]
+		else:
+			up_ahead = ''
+			from_behind = ''
+		if pat.match(char) and i != 0:
+			if pat.match(from_behind) and pat.match(up_ahead):
+				charList.append(char)
+			else:
+				charList.append(' ')
+				charList.append(char)
+		else:
+			charList.append(char)
+	return ''.join(charList)
+
+# processes string through titled function above; then, replaces spaces with dashes, such as: "NASA Satellite" to "nasa-satellite"
+def kabob(NAME):
+	str = titled(NAME)
+	return str.replace(' ', '-').lower()
+
 def arguments(ARGS, DIVIDER=':'):
 	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
 
@@ -164,4 +154,6 @@ def profile():
 		write_file(utilDir + '/profiles/profile.py', snippet)
 		print("\n[ Process Completed ]\n")
 
-# custom helpers go here
+
+# custom helpers start here
+# =========================
