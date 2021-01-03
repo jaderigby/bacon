@@ -3,15 +3,14 @@ from settings import settings
 
 profilePath = settings['profile_url'] + settings['profile']
 
-# path for current user. Example: "cd ~/"
-def root():
+def path(TYPE):
 	import os
-	return os.path.expanduser('~/')
-
-# path to utility
-def self_path():
-	import os
-	return os.path.dirname(os.path.realpath(__file__))
+	if TYPE == 'user':
+		return os.path.expanduser('~/')
+	elif TYPE == 'util' or TYPE == 'utility':
+		return os.path.dirname(os.path.realpath(__file__))
+	else:
+		return False
 
 def load_profile():
 	import os
@@ -38,15 +37,15 @@ def write_file(FILEPATH, DATA):
 
 def run_command(CMD, option = True):
 	import subprocess
-	shellStatus = True
+	shellStatus = True]
+	str = ''
 	if isinstance(CMD, list):
 		shellStatus = False
-		str = ''
 		for item in CMD:
 			str += (' ' + item)
 		CMD = str
 	if option:
-		print('\n============== Running Command: {}\n'.format(str))
+		print('\n============== Running Command: {}\n'.format(CMD))
 	subprocess.call(CMD, shell=shellStatus)
 
 def run_command_output(CMD, option = True):
@@ -82,7 +81,10 @@ def decorate(COLOR, STRING):
 	return bcolors[COLOR] + STRING + bcolors['endc']
 
 def user_input(STRING):
-	return raw_input(STRING)
+	try:
+		return raw_input(STRING)
+	except:
+		return input(STRING)
 
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
 def user_selection(DESCRIPTION, LIST):
@@ -96,58 +98,29 @@ def user_selection(DESCRIPTION, LIST):
 
 	while True:
 		print(str)
-		selection = raw_input('{}'.format(DESCRIPTION))
+		selection = user_input('{}'.format(DESCRIPTION))
 		pat = re.compile("[0-9]+")
 		if pat.match(selection):
 			selection = int(selection)
 		if isinstance(selection, int):
 			finalAnswer = selection
 			break
-		elif selection is 'x':
+		elif selection == 'x':
 			finalAnswer = 'exit'
 			break
-		elif selection is '':
+		elif selection == '':
 			finalAnswer = 'exit'
 			break
 		else:
 			print("\nPlease select a valid entry...")
 	return finalAnswer
 
-# returns PascalCased/camelCased strings as strings with spaces. Acronyms, such as NASASatellite will resolve to "NASA Satellite"
-# Be advised: does not account for numbers
-def titled(NAME):
-	import re
-	charList = []
-	pat = re.compile('[A-Z]')
-	nameList = list(NAME)
-	for i, char in enumerate(nameList):
-		if (i + 1 < len(nameList) and i - 1 >= 0):
-			up_ahead = nameList[i + 1]
-			from_behind = nameList[i - 1]
-		else:
-			up_ahead = ''
-			from_behind = ''
-		if pat.match(char) and i != 0:
-			if pat.match(from_behind) and pat.match(up_ahead):
-				charList.append(char)
-			else:
-				charList.append(' ')
-				charList.append(char)
-		else:
-			charList.append(char)
-	return ''.join(charList)
-
-# processes string through titled function above; then, replaces spaces with dashes, such as: "NASA Satellite" to "nasa-satellite"
-def kabob(NAME):
-	str = titled(NAME)
-	return str.replace(' ', '-').lower()
-
 def arguments(ARGS, DIVIDER=':'):
 	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
 
 def profile():
 	import os
-	utilDir = self_path()
+	utilDir = path('util')
 	if not os.path.exists(utilDir + '/profiles/profile.py'):
 		snippet = '''{\n\t"settings" : {\n\n\t\t}\n}'''
 		run_command('mkdir {}/profiles'.format(utilDir), False)
