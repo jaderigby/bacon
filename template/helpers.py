@@ -1,6 +1,5 @@
 import json
 from settings import settings
-from settings import settings as generalSettings
 
 profilePath = settings['profile_url'] + settings['profile']
 
