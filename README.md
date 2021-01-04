@@ -188,16 +188,14 @@ __Bacon:__ A simple utility that makes everything better!
 
 The helpers file is where you can include the functions that your utility uses.  This file is intended to include any non-business logic.  Bacon utilities come pre-configured with a handful of useful helper functions already.  These are listed below:
 
-- __root()__ = returns the user's root directory path, such as doing `cd ~/`
-- __self_path()__ = returns the directory path for the utility.
+- __path('user')__ = returns the user's root directory path, such as doing `cd ~/`
+- __path('util')__ = returns the directory path for the utility.
 - __load_profile()__ & __get_settings()__ = these two functions are set up specifically for calling the settings.  If you want to use the settings in an action file, uncomment the commented settings line at the top of the file.
 - __read_file()__ = opens a specified file.
 - __write_file()__ = writes to a specified file with the data being passed in as the second parameter.
 - __run_command()__ = runs a specified bash command. Also, it has an optional secondary parameter which accepts a boolean, to supress the output message. Example: `run_command('pwd', False)`. __Note:__ This can be a string or a list of single commands (each command to be chained together as a seperate item within the list, such as ['git', 'push']).
 - __run_command_output()__ = runs a specified command and then returns the output.  Also, it has an optional secondary parameter which accepts a boolean, to supress the output message. Example: `run_command_output('pwd', False)`
-- __titled()__ = converts any PascalCased/camelCased string to a title string, ie, a string with spaces and capitals at the beginning of each word.
-- __kabob()__ = converts any PascalCased/camelCased string to a lowercase string seperated by dashes.
-- __user_input__ = used to capture user inputs.
+- __user_input()__ = used to capture user inputs.
 - __user_selection()__ = converts a specified list to an interactive selection, where each list item is numbered.  The first argument determins the string given as the input prompt.  If "x" is selected, or enter is pressed before a selection is made, then the function returns the string "exit".  Any other selection that is not a number, returns the error "Please select a valid entry" and allows the user to try again.
 - __arguments()__ = use this to create a dictionary object for multiple command-line arguments.
 - __profile()__ = creates a new profile folder and profile file wthen invoked.

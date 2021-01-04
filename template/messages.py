@@ -1,6 +1,6 @@
 import helpers, json
 
-actionList = json.loads(helpers.read_file('{}/{}'.format(helpers.self_path(), 'action-list.json')))
+actionList = json.loads(helpers.read_file('{}/{}'.format(helpers.path('util'), 'action-list.json')))
 
 def statusMessage():
 	if len(actionList['actions']) > 0:

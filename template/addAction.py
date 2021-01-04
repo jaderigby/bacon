@@ -4,8 +4,8 @@ import os, re, json, helpers
 def execute(ARGS):
 	argDict = helpers.arguments(ARGS)
 
-	name = helpers.self_path().split('/')[-1]
-	fullPath = helpers.self_path()
+	name = helpers.path('util').split('/')[-1]
+	fullPath = helpers.path('util')
 	titleString = "Action"
 	if argDict:
 		if 'args' in argDict:
@@ -33,12 +33,13 @@ def execute(ARGS):
 	argDict = helpers.arguments(ARGS)
 	print(argDict)
 '''
-	finalPath = helpers.self_path() + '/' + newFeature + '.py'
-	print('''
+	finalPath = helpers.path('util') + '/' + newFeature + '.py'
+	statusMsg = '''
 NAME:           {}
 NEW MODULE:     {}
 NEW ACTION:     {}
-LOCATION:       {}''').format(name, newFeature, newAction, finalPath)
+LOCATION:       {}'''.format(name, newFeature, newAction, finalPath)
+	print(statusMsg)
 	template = basicSnippet
 	if argDict:
 		if 'args' in argDict:

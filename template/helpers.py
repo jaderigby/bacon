@@ -1,16 +1,8 @@
 import json
 from settings import settings
+from settings import settings as generalSettings
 
 profilePath = settings['profile_url'] + settings['profile']
-
-def path(TYPE):
-	import os
-	if TYPE == 'user':
-		return os.path.expanduser('~/')
-	elif TYPE == 'util' or TYPE == 'utility':
-		return os.path.dirname(os.path.realpath(__file__))
-	else:
-		return False
 
 def load_profile():
 	import os
@@ -26,6 +18,15 @@ def get_settings():
 	else:
 		return False
 
+def path(TYPE):
+	import os
+	if TYPE == 'user':
+		return os.path.expanduser('~/')
+	elif TYPE == 'util' or TYPE == 'utility':
+		return os.path.dirname(os.path.realpath(__file__))
+	else:
+		return False
+
 def read_file(FILEPATH):
 	FILE = open(FILEPATH, 'r')
 	data = FILE.read()
@@ -37,7 +38,7 @@ def write_file(FILEPATH, DATA):
 
 def run_command(CMD, option = True):
 	import subprocess
-	shellStatus = True]
+	shellStatus = True
 	str = ''
 	if isinstance(CMD, list):
 		shellStatus = False
@@ -61,7 +62,7 @@ def run_command_output(CMD, option = True):
 			print(err)
 		
 		else:
-			result = out
+			result = out.decode('utf-8')
 
 	return result
 
