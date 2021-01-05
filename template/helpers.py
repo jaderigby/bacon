@@ -39,13 +39,14 @@ def run_command(CMD, option = True):
 	import subprocess
 	shellStatus = True
 	str = ''
+	showCmd = CMD
 	if isinstance(CMD, list):
 		shellStatus = False
 		for item in CMD:
 			str += (' ' + item)
-		CMD = str
+		showCmd = str
 	if option:
-		print('\n============== Running Command: {}\n'.format(CMD))
+		print('\n============== Running Command: {}\n'.format(showCmd))
 	subprocess.call(CMD, shell=shellStatus)
 
 def run_command_output(CMD, option = True):
