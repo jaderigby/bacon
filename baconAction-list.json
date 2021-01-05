@@ -1,0 +1,14 @@
+{
+    "toolName": "Bacon",
+    "alias": "bacon",
+    "actions": [
+        {
+            "name": "new",
+            "description": "Create a new item"
+        },
+        {
+            "name": "helpers",
+            "description": "update helpers from a list. \n\t\t\tNote: it uses the comment '# custom helpers start here' as a bookmark"
+        }
+    ]
+}
