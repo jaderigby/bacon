@@ -4,11 +4,7 @@
     "actions": [
         {
             "name": "new",
-            "description": "Create a new item"
-        },
-        {
-            "name": "helpers",
-            "description": "update helpers from a list. \n\t\t\tNote: it uses the comment '# custom helpers start here' as a bookmark"
+            "description": "Create a new item\n\nUtility Features:\n\n-action:\t\tcreate a new action\n-profile:\t\tgenerate a profile file\n-helpers:\t\tupdate default helpers to bacon's latest"
         }
     ]
 }
