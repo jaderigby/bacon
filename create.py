@@ -62,10 +62,11 @@ def execute():
 	replace_generic_reference_with_actual('{}{}/{}/action-list.json'.format(origin, utilitiesPrimeDirectory, name), name, '<tool-name>')
 	replace_generic_reference_with_actual('{}{}/{}/action-list.json'.format(origin, utilitiesPrimeDirectory, name), alias, '<alias>')
 
-	print('''
+	statusMsg = '''
 NAME:           {NAME}
 ALIAS:          {ALIAS}
-LOCATION:       {ORIGIN}{UTILITIES_PRIME_DIRECTORY}/{NAME}''').format(NAME= name, ALIAS= alias, ORIGIN= origin, UTILITIES_PRIME_DIRECTORY= utilitiesPrimeDirectory)
+LOCATION:       {ORIGIN}{UTILITIES_PRIME_DIRECTORY}/{NAME}'''.format(NAME= name, ALIAS= alias, ORIGIN= origin, UTILITIES_PRIME_DIRECTORY= utilitiesPrimeDirectory)
+	print(statusMsg)
 
 	print('''
 [ Process Complete ]

@@ -119,15 +119,6 @@ def user_selection(DESCRIPTION, LIST):
 def arguments(ARGS, DIVIDER=':'):
 	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
 
-def profile():
-	import os
-	utilDir = path('util')
-	if not os.path.exists(utilDir + '/profiles/profile.py'):
-		snippet = '''{\n\t"settings" : {\n\n\t\t}\n}'''
-		run_command('mkdir {}/profiles'.format(utilDir), False)
-		write_file(utilDir + '/profiles/profile.py', snippet)
-		print("\n[ Process Completed ]\n")
-
 
 # custom helpers start here
 # =========================

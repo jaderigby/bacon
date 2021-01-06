@@ -1,4 +1,4 @@
-import sys, addAction, helpers
+import sys, sizzle
 import messages as msg
 # new imports start here
 
@@ -15,8 +15,11 @@ if action == None:
 	msg.statusMessage()
 
 elif action == '-action':
-	addAction.execute(args)
+	sizzle.do_action(args)
 
 elif action == '-profile':
-	helpers.profile()
+	sizzle.profile()
+
+elif action == '-helpers':
+	sizzle.helpers()
 # new actions start here

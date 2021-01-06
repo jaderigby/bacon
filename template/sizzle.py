@@ -1,7 +1,8 @@
 import messages as msg
-import os, re, json, helpers
+import os, re, json
 
-def execute(ARGS):
+def do_action(ARGS):
+	import helpers
 	argDict = helpers.arguments(ARGS)
 
 	name = helpers.path('util').split('/')[-1]
@@ -72,4 +73,31 @@ elif action == "{newAction}":
 	newItem['description'] = ''
 	actionData['actions'].append(newItem)
 	helpers.write_file(fullPath + '/action-list.json', json.dumps(actionData, indent=4))
+	msg.done()
+
+def profile():
+	import helpers
+	import os
+	utilDir = helpers.path('util')
+	if not os.path.exists(utilDir + '/profiles/profile.py'):
+		snippet = '''{\n\t"settings" : {\n\n\t\t}\n}'''
+		helpers.run_command('mkdir {}/profiles'.format(utilDir), False)
+		helpers.write_file(utilDir + '/profiles/profile.py', snippet)
+		print("\nprofile added!\n")
+		msg.done
+
+def helpers():
+	import helpers
+	# get bacon filepath
+	baconHelpersFilepath = helpers.run_command_output('cd {} && cd ../'.format(helpers.path('util'))).replace('\n', '') + 'bacon/template/helpers.py'
+	utilityHelpersFilepath = '/{}/{}'.format(helpers.path('util'), 'helpers.py')
+	# get target helpers content
+	content = helpers.read_file(utilityHelpersFilepath)
+	customHelpers = content.split("# custom helpers start here\n# =========================")[1]
+	# get default helpers template from bacon
+	newDefaultHelpers = helpers.read_file(baconHelpersFilepath)
+	# pack content and save
+	newContent = newDefaultHelpers + customHelpers
+	# print(newContent)
+	helpers.write_file(utilityHelpersFilepath, newContent)
 	msg.done()
