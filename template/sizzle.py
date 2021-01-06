@@ -89,7 +89,7 @@ def profile():
 def helpers():
 	import helpers
 	# get bacon filepath
-	baconHelpersFilepath = helpers.run_command_output('cd {} && cd ../'.format(helpers.path('util'))).replace('\n', '') + 'bacon/template/helpers.py'
+	baconHelpersFilepath = helpers.run_command_output('cd {} && cd ../ && pwd'.format(helpers.path('util'))).replace('\n', '') + '/bacon/template/helpers.py'
 	utilityHelpersFilepath = '/{}/{}'.format(helpers.path('util'), 'helpers.py')
 	# get target helpers content
 	content = helpers.read_file(utilityHelpersFilepath)
