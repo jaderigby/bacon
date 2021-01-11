@@ -31,7 +31,7 @@ alias bacon="python ~/Documents/bacon-bits/bacon/baconActions.py"
 
 __Note:__ If you created your `bacon-bits` file anywhere else, other than the `Documents` folder, you will need to modify the path above to point to wherever you installed bacon.
 
-Once your .bashrc file is setup, add the following to your `.bash_profile` file.  (__Note:__ If you do not have a `.bash_profile` file, you can create one by going to your user's root directory and creating a file called `.bash_profile`):
+Once your .bashrc file is setup, add the following to your `.zshrc` file  (__Note:__ If you do not have a `.zshrc` file, you can create one by going to your user's root directory and creating a file called `.zshrc`):
 
 ```
 source ~/Documents/bacon-bits/.bashrc
@@ -93,7 +93,7 @@ This will create a new action which can receive additional parameters as key/val
 myUtility create name:test
 ```
 
-The above command will result in the following object being assigned to the "argDict" variable:
+The above command will result in the following object being assigned to your utility's action "argDict" variable:
 
 ```
 {"name" : "test"}
@@ -115,7 +115,7 @@ utilityName -profile
 
 ### Be Sure To Source! ###
 
-Each time you create a new utility (which adds a new alias to your `bacon-bits/.bashrc` file,) you will want to source the `.bashrc` file:
+Each time you create a new utility (which adds a new alias to your `bacon-bits/.bashrc` file) you will want to source the `.bashrc` file:
 
 ```
 source <path-to-bacon-bits>/bacon-bits/.bashrc
@@ -161,7 +161,7 @@ Running the above command replaces the need to run `source <path-to-bacon-bits>/
 
 - Typing the name of the utility - or rather, its alias - shows the list of possible commands/actions.
 
-- When invoking a utility, each utility follows the pattern: `<utility-name> <action>`
+- When invoking a utility, each utility follows the pattern: `<utility-alias> <action>`
 
 - Utilities come with a handful of `helpers` when writing your utility, that make writing utilities faster and easier.  These are common `helper` functions covering common actions that a typical utility might use.
 
@@ -178,10 +178,10 @@ __Bacon:__ A simple utility that makes everything better!
 - __actions.py__ = where the action invocations are defined.
 - __messages.py__ = where all messages are to be contained.  This keeps things clean and neat.
 - __helpers.py__ = where all common functions should live.  A typical helpers file will contain any functions not defining specific business logic.
-- __settings.py__ = where the settings definitions live.  This file typically does not need to be modified.
+- __settings.py__ = where the settings definitions live.  This file typically does not need to be modified. Exceptions include things such as when you need to switch between multiple profile files, etc.
 - __profiles folder__ = the profiles folder is where locally-specific settings live.  Any definition specific to a particular developers setup can be defined here, within a `profile.py` file.  This is also where any settings or task-specific data/definitions should live.  You can have multiple profile files inside the `profiles` folder.  Change which profile file your utility points to by changing the reference in the utility's `settings.py` file.
-- __addAction.py__ = this runs when using the `-action` command. Used to add new actions to your utility.
-- __profile.py__ = this is where locally-specific info can be stored/configured. For example, if two developers are using a utility, but have different configurations for that utility, the `profile.py` file is where these unique parts would be declared.
+- __sizzle.py__ = this runs when using the `-action`, `-profile`, or similar commands. Essentially `sizzle.py` contains those features tied to the initial configuration of a utility.
+- __profiles/profile.py__ = this is where locally-specific info can be stored/configured. For example, if two developers are using a utility, but have different configurations for that utility, the `profile.py` file is where these unique parts would be declared.
 - __action-list.json__ = this is where the actions are described.  When you do your utility alias with no accompanying action command, this file is read, and the names and descriptions are listed. You can use this file to add descriptions for each of your utility's actions.
 
 ## Helpers ##
@@ -198,7 +198,6 @@ The helpers file is where you can include the functions that your utility uses. 
 - __user_input()__ = used to capture user inputs.
 - __user_selection()__ = converts a specified list to an interactive selection, where each list item is numbered.  The first argument determins the string given as the input prompt.  If "x" is selected, or enter is pressed before a selection is made, then the function returns the string "exit".  Any other selection that is not a number, returns the error "Please select a valid entry" and allows the user to try again.
 - __arguments()__ = use this to create a dictionary object for multiple command-line arguments.
-- __profile()__ = creates a new profile folder and profile file wthen invoked.
 
 ## The Bacon Profile File ##
 
