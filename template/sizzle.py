@@ -101,3 +101,16 @@ def helpers():
 	# print(newContent)
 	helpers.write_file(utilityHelpersFilepath, newContent)
 	msg.done()
+
+def alias():
+	import json
+	import helpers
+	actionList = json.loads(helpers.read_file('{}/{}'.format(helpers.path('util'), 'action-list.json')))
+	bashrcFilepath = helpers.run_command_output('cd {} && cd ../'.format(helpers.path('util'))) + '.bashrc'
+	contents = helpers.read_file(bashrcFilepath)
+	pat = re.compile('alias {}='.format())
+	match = re.search(pat, contents)
+	formattedAlias = '\nalias {}="python {}/actions.py"'.format(actionList['alias'], helpers.path('util'))
+	if not match:
+		contents += formattedAlias
+	helpers.write_file(bashrcFilepath, contents)

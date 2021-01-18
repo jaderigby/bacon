@@ -110,3 +110,8 @@ def user_selection(DESCRIPTION, LIST):
 
 def arguments(ARGS, DIVIDER=':'):
 	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
+
+def get_alias(FILEPATH):
+	actionList = json.loads(read_file('{}/{}'.format(FILEPATH, 'action-list.json')))
+	alias = actionList['alias']
+	return alias

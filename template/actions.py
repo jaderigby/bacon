@@ -22,4 +22,7 @@ elif action == '-profile':
 
 elif action == '-helpers':
 	sizzle.helpers()
+
+elif action == '-alias':
+	sizzle.alias()
 # new actions start here
