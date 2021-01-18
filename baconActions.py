@@ -24,6 +24,6 @@ elif action == '-action':
 elif action == '-profile':
 	helpers.profile()
 
-elif action == "-alias":
+elif action == "alias":
 	addAlias.execute()
 # new actions start here

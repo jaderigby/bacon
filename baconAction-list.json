@@ -7,7 +7,7 @@
             "description": "Create a new item\n\nUtility Features:\n\n-action:\t\tcreate a new action\n-profile:\t\tgenerate a profile file\n-helpers:\t\tupdate default helpers to bacon's latest\n"
         },
         {
-            "name": "-alias",
+            "name": "alias",
             "description": "adds aliases to .baconrc file"
         }
     ]
