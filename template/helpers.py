@@ -96,7 +96,7 @@ def list_expander(LIST):
             tempList = [elem for elem in range(int(rangeList[0]), int(rangeList[1]) + 1)]
             expandedList += tempList
         else:
-            expandedList.append(item)
+            expandedList.append(int(item))
     return expandedList
 
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
