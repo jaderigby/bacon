@@ -87,8 +87,20 @@ def user_input(STRING):
 	except:
 		return input(STRING)
 
+def list_expander(LIST):
+    baseList = LIST.replace(' ', '').split(',')
+    expandedList = []
+    for item in baseList:
+        if '-' in item:
+            rangeList = item.split('-')
+            tempList = [elem for elem in range(int(rangeList[0]), int(rangeList[1]) + 1)]
+            expandedList += tempList
+        else:
+            expandedList.append(item)
+    return expandedList
+
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
-def user_selection(DESCRIPTION, LIST):
+def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 	import re
 	str = ''
 	for i, item in enumerate(LIST, start=1):
@@ -100,10 +112,16 @@ def user_selection(DESCRIPTION, LIST):
 	while True:
 		print(str)
 		selection = user_input('{}'.format(DESCRIPTION))
-		pat = re.compile("[0-9]+")
+		if LIST_SELECT:
+			pat = re.compile("[0-9,- ]+")
+		else:
+			pat = re.compile("[0-9]+")
 		if pat.match(selection):
-			selection = int(selection)
-		if isinstance(selection, int):
+			if LIST_SELECT:
+				selection = list_expander(selection)
+			else:
+				selection = int(selection)
+		if isinstance(selection, int) or isinstance(selection, list):
 			finalAnswer = selection
 			break
 		elif selection == 'x':
