@@ -113,7 +113,7 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 		print(str)
 		selection = user_input('{}'.format(DESCRIPTION))
 		if LIST_SELECT:
-			pat = re.compile("[0-9,- ]+")
+			pat = re.compile("[0-9,\- ]+")
 		else:
 			pat = re.compile("[0-9]+")
 		if pat.match(selection):
