@@ -104,7 +104,10 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 	import re
 	str = ''
 	for i, item in enumerate(LIST, start=1):
-		str += '\n[{index}] {item}'.format(index=i, item=item)
+		if item == CURRENT:
+			str += decorate('green', '\n[{index}] {item}'.format(index=i, item=item))
+		else:
+			str += '\n[{index}] {item}'.format(index=i, item=item)
 	str += '\n\n[x] Exit\n'
 
 	finalAnswer = False
