@@ -137,13 +137,13 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 def arguments(ARGS, DIVIDER=':'):
 	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
 
-def kv_set(DICT, KEY, DEFAULT):
+def kv_set(DICT, KEY):
 	if KEY in DICT:
 		if DICT[KEY] == 'true':
 			DICT[KEY] = 't'
 		return DICT[KEY]
 	else:
-		return DEFAULT
+		return False
 
 
 # custom helpers start here
