@@ -5,17 +5,11 @@ profilePath = settings['profile_url'] + settings['profile']
 
 def load_profile():
 	import os
-	if os.path.exists(profilePath):
-		return json.loads(read_file(profilePath))
-	else:
-		return json.loads("{}")
+	return json.loads(read_file(profilePath)) if os.path.exists(profilePath) else json.loads("{}")
 
 def get_settings():
 	profile = load_profile()
-	if 'settings' in profile:
-		return profile['settings']
-	else:
-		return False
+	return profile['settings'] if 'settings' in profile else False
 
 def path(TYPE):
 	import os
