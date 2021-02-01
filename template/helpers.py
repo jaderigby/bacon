@@ -54,7 +54,6 @@ def run_command_output(CMD, option = True):
 
 		if err:
 			print(err)
-		
 		else:
 			result = out.decode('utf-8')
 
@@ -106,15 +105,9 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 	while True:
 		print(str)
 		selection = user_input('{}'.format(DESCRIPTION))
-		if LIST_SELECT:
-			pat = re.compile("[0-9,\- ]+")
-		else:
-			pat = re.compile("[0-9]+")
+		pat = re.compile("[0-9,\- ]+") if LIST_SELECT else re.compile("[0-9]+")
 		if pat.match(selection):
-			if LIST_SELECT:
-				selection = list_expander(selection)
-			else:
-				selection = int(selection)
+			selection = list_expander(selection) if LIST_SELECT else int(selection)
 		if isinstance(selection, int) or isinstance(selection, list):
 			finalAnswer = selection
 			break
