@@ -137,7 +137,7 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 def arguments(ARGS, DIVIDER=':'):
 	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
 
-def kv_set(DICT, KEY, DEFAULT=False):
+def kv_set(DICT, KEY, DEFAULT = False):
 	if KEY in DICT:
 		if DICT[KEY] == 'true':
 			DICT[KEY] = 't'
