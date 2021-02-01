@@ -141,6 +141,8 @@ def kv_set(DICT, KEY, DEFAULT = False):
 	if KEY in DICT:
 		if DICT[KEY] == 'true':
 			DICT[KEY] = 't'
+		elif DICT[KEY] == 'false':
+			DICT[KEY] = 'f'
 		return DICT[KEY]
 	else:
 		return DEFAULT
