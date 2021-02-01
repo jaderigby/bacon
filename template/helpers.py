@@ -139,8 +139,7 @@ def arguments(ARGS, DIVIDER=':'):
 
 def kv_set(DICT, KEY, DEFAULT = False):
 	if KEY in DICT:
-		DICT[KEY] = 't' if DICT[KEY] == 'true' else DICT[KEY]
-		DICT[KEY] = 'f' if DICT[KEY] == 'false' else DICT[KEY]
+		DICT[KEY] = 't' if DICT[KEY] == 'true' else 'f' if DICT[KEY] == 'false' else DICT[KEY]
 		return DICT[KEY]
 	else:
 		return DEFAULT
