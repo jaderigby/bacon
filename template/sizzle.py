@@ -19,6 +19,7 @@ Please give your new action a name [Eg: OpenFile]: '''.format(titleString))
 What would you like to call the action? ''')
 
 	basicSnippet = '''import messages as msg
+import helpers
 
 # settings = helpers.get_settings()
 
