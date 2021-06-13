@@ -1,0 +1,14 @@
+
+baconFun() {
+    baconActions=~/Documents/bacon-bits/bacon/baconActions.py
+    if [ ! -z $1 ]; then
+        if [ $1 = "set" ]; then
+            source ~/Documents/bacon-bits/.baconrc
+        else
+            python $baconActions $1
+        fi
+    else
+        python $baconActions
+    fi
+}
+alias bacon="baconFun"
