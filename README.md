@@ -6,64 +6,23 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 ## Setup ##
 
-### Section 1 ###
-
-__Note:__ If you would like to use the default setup, you can skip to _Section 2_ and run the commands listed.
-
-First, create a directory called "bacon-bits".  Typically, this lives inside your "Documents" folder, but you can create it wherever you like.  Next, `cd` into the `bacon-bits` directory. So, for example:
+Inside your `Documents` folder, create a folder called `bacon-bits`.  Clone the bacon repo inside the `bacon-bits` folder.  Then, run:
 
 ```
-cd ~/Documents && mkdir bacon-bits
+scp ~/Documents/bacon-bits/bacon/.baconrc ~/Documents/bacon-bits
 ```
 
-Now, clone the bacon utility inside your `bacon-bits` directory.
+Finally, add the following to your `.bash_profile` or `.zshrc` file:
 
 ```
-cd bacon-bits
-git clone git@github.com:jaderigby/bacon.git
+source ~/Documents/bacon-bits/.baconrc
 ```
 
-Then, create a `.bashrc` file and add the following:
+To verify that the install was successful, run `bacon`. You should see the commands available for bacon.
 
-```
-alias bacon="python ~/Documents/bacon-bits/bacon/baconActions.py"
-```
+__You are all set!__
 
-__Note:__ If you created your `bacon-bits` file anywhere else, other than the `Documents` folder, you will need to modify the path above to point to wherever you installed bacon.
-
-Once your .bashrc file is setup, add the following to your `.zshrc` file  (__Note:__ If you do not have a `.zshrc` file, you can create one by going to your user's root directory and creating a file called `.zshrc`):
-
-```
-source ~/Documents/bacon-bits/.bashrc
-```
-
-Finally, do:
-
-```
-source ~/.zshrc
-```
-
-__You are set!__
-
-### Section 2 ###
-
-If you are using the default setup, ie placing it inside the `Documents` folder, you can run the following commands for your setup:
-
-```
-cd ~/Documents && mkdir bacon-bits
-cd bacon-bits
-git clone git@github.com:jaderigby/bacon.git
-touch .bashrc
-echo "alias bacon=\"python ~/Documents/bacon-bits/bacon/baconActions.py\"" >> .bashrc
-echo "source ~/Documents/bacon-bits/.bashrc" >> ~/.zshrc
-source ~/.zshrc
-```
-
-## Usage ##
-
-Type `bacon` in order to see the options.
-
-### Create A New Utility ###
+### Create A New Utility Using Bacon ###
 
 When creating a new utility, do:
 
@@ -75,22 +34,22 @@ This command will walk you through creating a new utility.
 
 ### Adding An Action ###
 
-To add a new action, do:
+To add a new action to your utility, do:
 
 ```
-utilityName -action
+utilityAlias -action
 ```
 
 To add a new action that supports parameters, do:
 
 ```
-utilityName -action args:true
+utilityAlias -action args:true
 ```
 
 This will create a new action which can receive additional parameters as key/value pairs, seperated by a colon, such as:
 
 ```
-myUtility create name:test
+utilityAlias create name:test
 ```
 
 The above command will result in the following object being assigned to your utility's action "argDict" variable:
@@ -110,52 +69,12 @@ helpers.write_file(argDict['name'] + '.txt', contents)
 If you want to create a profile file for your utility, do:
 
 ```
-utilityName -profile
+utilityAlias -profile
 ```
 
 ### Be Sure To Source! ###
 
-Each time you create a new utility (which adds a new alias to your `bacon-bits/.bashrc` file) you will want to source the `.bashrc` file:
-
-```
-source <path-to-bacon-bits>/bacon-bits/.bashrc
-```
-
-### .bashrc Helper ###
-
-Another way, is to create a helper inside of your `.bashrc` file using the following snippet:
-
-```
-baconFun() {
-    baconActions=~/Documents/bacon-bits/bacon/baconActions.py
-    if [ ! -z $1 ]; then
-        if [ $1 = "set" ]; then
-            source ~/Documents/bacon-bits/.bashrc
-        else
-            python $baconActions $1
-        fi
-    else
-        python $baconActions
-    fi
-}
-alias bacon="baconFun"
-```
-
-__Note:__ Be sure to change the paths in the snippet to reflect your setup, if you have anything other than the default Documents folder setup, etc.
-
-This should go at the top of your file.  Once in place, do:
-
-```
-source ~/.zshrc
-```
-
-Now, whenever you add a new bacon utility, run:
-
-```
-bacon set
-```
-
-Running the above command replaces the need to run `source <path-to-bacon-bits>/bacon-bits/.bashrc`.
+Each time you create a new utility (which adds a new alias to your `bacon-bits/.baconrc` file) you will want to run `bacon set`.
 
 ### Utilities Observe The Following Behavior: ###
 
@@ -203,9 +122,8 @@ The helpers file is where you can include the functions that your utility uses. 
 
 In addition to your utility having profiles, bacon has support for its own `profile.py` file, as well.  In fact, if you are installing bacon anywhere else other than `Documents`, you can use the profile.py file to make it work.  Observe the following:
 
-- __homeDir__ = to change the location to anything other than`Documents`, such as `"homeDir" : "Development"`. This would reference the `Development` directory, rather than the default `Documents` directory.
+- __homeDir__ = to change the location to anything other than `Documents`, such as `"homeDir" : "Development"`. This would reference the `Development` directory, rather than the default `Documents` directory.
 - __utilitiesPrimeDirectory__ = to change the bacon home folder to anything other than `bacon-bits`.
-- __rcPath__ = to change the `.bashrc` reference to something else, such as `.baconrc`
 
 To use these, create a new directory inside of the `bacon` directory, and call it `profiles`.  Then inside the `profiles` directory, create a file called `profile.py`.  Add the following to this file:
 

@@ -107,7 +107,7 @@ def alias():
 	import json
 	import helpers
 	actionList = json.loads(helpers.read_file('{}/{}'.format(helpers.path('util'), 'action-list.json')))
-	bashrcFilepath = helpers.run_command_output('cd {} && cd ../'.format(helpers.path('util'))) + '.bashrc'
+	bashrcFilepath = helpers.run_command_output('cd {} && cd ../'.format(helpers.path('util'))) + '.baconrc'
 	contents = helpers.read_file(bashrcFilepath)
 	pat = re.compile('alias {}='.format())
 	match = re.search(pat, contents)

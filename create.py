@@ -15,7 +15,7 @@ def execute():
 		if 'utilitiesPrimeDirectory' in settings:
 			utilitiesPrimeDirectory = settings['utilitiesPrimeDirectory']
 
-	rcPath = '.bashrc'
+	rcPath = '.baconrc'
 	if settings:
 		if 'rcPath' in settings:
 			rcPath = settings['rcPath']
