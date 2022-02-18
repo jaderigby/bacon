@@ -9,7 +9,10 @@ def load_profile():
 
 def get_settings():
 	profile = load_profile()
-	return profile['settings'] if 'settings' in profile else False
+	if 'settings' in profile:
+		for key in profile['settings']:
+			settings[key] = profile['settings'][key]
+	return settings
 
 def path(TYPE):
 	import os

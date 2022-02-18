@@ -1,2 +1,3 @@
 *.pyc
-profile.py
+profiles
+.DS_Store
