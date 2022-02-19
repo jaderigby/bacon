@@ -6,7 +6,9 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 ## Setup ##
 
-Run the following command to trigger the setup script:
+Either download and unzip the bacon repo into your Documents folder, or clone it into your Documents folder.
+
+Then, run the following command to trigger the setup script:
 
 ```
 python ~/Documents/bacon/setup.py --exec && cd ~/Documents/bacon && setup.py && source ~/.zshrc
@@ -20,7 +22,7 @@ What the script does:
 - moves `bacon` to the new `bacon-bits` folder
 - moves the `.baconrc` file from `bacon` to the `bacon-bits` folder
 - adds `source ~/Documents/bacon-bits/.baconrc` to your `.zshrc` file
-- runs `source ~/.zshrc`
+- __Note:__ the last line of the above command runs `source ~/.zshrc`
 
 To verify that the install was successful, run `bacon`. You should see the commands available for bacon.
 
@@ -34,7 +36,7 @@ To create a new utility, do:
 bacon new
 ```
 
-Follow the instructions in the terminal to finish creaating your utility.
+Follow the instructions in the terminal to finish creating your utility.
 
 ### Adding An Action ###
 
