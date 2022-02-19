@@ -1,4 +1,3 @@
-
 baconFun() {
     baconActions=~/Documents/bacon-bits/bacon/baconActions.py
     if [ ! -z $1 ]; then
@@ -23,7 +22,6 @@ gotoFun() {
         fi
     fi
 }
-
 alias goto="gotoFun"
 
 showFun() {
@@ -32,9 +30,8 @@ showFun() {
             open ~/Documents/bacon-bits
         elif [ $1 = "bacon" ]; then
             open ~/Documents/bacon-bits/bacon
-            #~~~ bacon:show placeholder
+            #~~~ bacon:showme placeholder
         fi
     fi
 }
-
-alias show="showFun"
+alias showme="showFun"

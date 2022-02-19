@@ -32,11 +32,11 @@ def execute():
 					aliasStrGoto = '''        elif [ $1 = "{ALIAS}" ]; then
                 cd {PATH}
             #~~~ bacon:goto placeholder'''.format(ALIAS= alias, PATH= path)
-					aliasStrShow = '''        elif [ $1 = "{ALIAS}" ]; then
+					aliasStrShowme = '''        elif [ $1 = "{ALIAS}" ]; then
                 open {PATH}
-            #~~~ bacon:show placeholder'''.format(ALIAS= alias, PATH= path)
+            #~~~ bacon:showme placeholder'''.format(ALIAS= alias, PATH= path)
 					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #~~~ bacon:goto placeholder', aliasStrGoto)
-					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #~~~ bacon:show placeholder', aliasStrShow)
+					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #~~~ bacon:showme placeholder', aliasStrShowme)
 	if count > 0:
 		helpers.write_file(baconrcFile, APPENDED_DATA_STR)
 	else:
