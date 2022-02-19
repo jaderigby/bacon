@@ -55,7 +55,7 @@ __Bacon:__ A simple utility that makes everything better!
 To add an action to your utility, do:
 
 ```
-utilityAlias -action
+triggerWord -action
 ```
 
 `bacon new` is an example of an action, where `new` is the action.
@@ -63,13 +63,13 @@ utilityAlias -action
 You can also add an action that supports parameters, by doing:
 
 ```
-utilityAlias -action args:true
+triggerWord -action args:true
 ```
 
 This will create a new action which can receive additional parameters as key/value pairs, seperated by a colon, such as:
 
 ```
-utilityAlias create name:test
+triggerWord create name:test
 ```
 
 The above command will result in the following object being assigned to your utility's action "argDict" variable:
@@ -89,7 +89,7 @@ helpers.write_file(argDict['name'] + '.txt', contents)
 If you want to create a profile file for your utility, do:
 
 ```
-utilityAlias -profile
+triggerWord -profile
 ```
 
 Profile files are used to set or override your utility's settings.
