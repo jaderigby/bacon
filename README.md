@@ -40,6 +40,16 @@ Follow the instructions in the terminal to finish creating your utility.
 
 The `name` is the name that will be used for the utility's folder. The alias is the string you will use to trigger your utility. Example: `bacon`.
 
+## Terminology ##
+
+__Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking those scripts.
+
+__Trigger Word:__ A reference to the alias that triggers your utility
+
+__Action:__ A command added to a utility, such as `bacon new` where `new` is the action.
+
+__Bacon:__ A simple utility that makes everything better!
+
 ### Adding An Action ###
 
 To add an action to your utility, do:
@@ -84,7 +94,7 @@ utilityAlias -profile
 
 Profile files are used to set or override your utility's settings.
 
-### Be Sure To Source! ###
+### Use The Source! ###
 
 Each time you create a new utility (which adds a new alias to your `bacon-bits/.baconrc` file, you will want to run `bacon set`.  This will source the `.baconrc` file.
 
@@ -95,14 +105,6 @@ Each time you create a new utility (which adds a new alias to your `bacon-bits/.
 - When invoking a utility, each utility follows the pattern: `<utility-alias> <action>`
 
 - Utilities come with a handful of `helpers` when writing your utility, that make writing utilities faster and easier.  These are common `helper` functions covering common actions that a typical utility might use.
-
-## Terminology ##
-
-__Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking those scripts.
-
-__Action:__ A command added to a utility, such as `bacon new` where `new` is the action.
-
-__Bacon:__ A simple utility that makes everything better!
 
 ## Structure ##
 
