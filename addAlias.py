@@ -28,13 +28,13 @@ def execute():
 				count += 1
 				print('\nadding alias: {}'.format(alias))
 				APPENDED_DATA_STR += '\n' + aliasStr
-				if addPerks:
+				if addPerks == "True" or addPerks == "true":
 					aliasStrGoto = '''        elif [ $1 = "{ALIAS}" ]; then
-                cd {PATH}
-            #~~~ bacon:goto placeholder'''.format(ALIAS= alias, PATH= path)
+            cd {PATH}
+        #~~~ bacon:goto placeholder'''.format(ALIAS= alias, PATH= path)
 					aliasStrShowme = '''        elif [ $1 = "{ALIAS}" ]; then
-                open {PATH}
-            #~~~ bacon:showme placeholder'''.format(ALIAS= alias, PATH= path)
+            open {PATH}
+        #~~~ bacon:showme placeholder'''.format(ALIAS= alias, PATH= path)
 					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #~~~ bacon:goto placeholder', aliasStrGoto)
 					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #~~~ bacon:showme placeholder', aliasStrShowme)
 	if count > 0:

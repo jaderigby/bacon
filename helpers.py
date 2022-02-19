@@ -5,23 +5,23 @@ profilePath = settings['profile_url'] + settings['profile']
 
 def load_profile():
 	import os
-	return json.loads(read_file(profilePath)) if os.path.exists(profilePath) else json.loads("{}")
+	if os.path.exists(profilePath):
+		return json.loads(read_file(profilePath))
+	else:
+		return json.loads("{}")
 
 def get_settings():
 	profile = load_profile()
 	if 'settings' in profile:
-		for key in profile['settings']:
-			settings[key] = profile['settings'][key]
-	return settings
-
-def path(TYPE):
-	import os
-	if TYPE == 'user':
-		return os.path.expanduser('~/')
-	elif TYPE == 'util' or TYPE == 'utility':
-		return os.path.dirname(os.path.realpath(__file__))
+		return profile['settings']
 	else:
 		return False
+
+def user_input(STRING):
+	try:
+		return raw_input(STRING)
+	except:
+		return input(STRING)
 
 def read_file(FILEPATH):
 	FILE = open(FILEPATH, 'r')
@@ -34,33 +34,18 @@ def write_file(FILEPATH, DATA):
 
 def run_command(CMD, option = True):
 	import subprocess
-	shellStatus = True
-	str = ''
-	showCmd = CMD
-	if isinstance(CMD, list):
-		shellStatus = False
-		for item in CMD:
-			str += (' ' + item)
-		showCmd = str
 	if option:
-		print('\n============== Running Command: {}\n'.format(showCmd))
-	subprocess.call(CMD, shell=shellStatus)
+		print('\n============== Running Command: {}\n'.format(CMD))
+	subprocess.call(CMD, shell=True)
 
-def run_command_output(CMD, option = True):
-	import subprocess
-	if option:
-		print('\n============== Outputting Command: {}\n'.format(CMD))
-	result = False
-	if CMD != None:
-		process = subprocess.Popen(CMD, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
-		out, err = process.communicate()
-
-		if err:
-			print(err)
-		else:
-			result = out.decode('utf-8')
-
-	return result
+def path(TYPE):
+	import os
+	if TYPE == 'user':
+		return os.path.expanduser('~/')
+	elif TYPE == 'util' or TYPE == 'utility':
+		return os.path.dirname(os.path.realpath(__file__))
+	else:
+		return False
 
 def decorate(COLOR, STRING):
 	bcolors = {
@@ -77,26 +62,25 @@ def decorate(COLOR, STRING):
 
 	return bcolors[COLOR] + STRING + bcolors['endc']
 
-def user_input(STRING):
-	try:
-		return raw_input(STRING)
-	except:
-		return input(STRING)
+def run_command_output(CMD, option = True):
+	import subprocess
+	if option:
+		print('\n============== Outputting Command: {}\n'.format(CMD))
+	result = False
+	if CMD != None:
+		process = subprocess.Popen(CMD, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+		out, err = process.communicate()
 
-def list_expander(LIST):
-    baseList = LIST.replace(' ', '').split(',')
-    expandedList = []
-    for item in baseList:
-        if '-' in item:
-            rangeList = item.split('-')
-            tempList = [elem for elem in range(int(rangeList[0]), int(rangeList[1]) + 1)]
-            expandedList += tempList
-        else:
-            expandedList.append(int(item))
-    return expandedList
+		if err:
+			print(err)
+		
+		else:
+			result = out.decode('utf-8')
+
+	return result
 
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
-def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
+def user_selection(DESCRIPTION, LIST):
 	import re
 	str = ''
 	for i, item in enumerate(LIST, start=1):
@@ -108,10 +92,10 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 	while True:
 		print(str)
 		selection = user_input('{}'.format(DESCRIPTION))
-		pat = re.compile("[0-9,\- ]+") if LIST_SELECT else re.compile("[0-9]+")
+		pat = re.compile("[0-9]+")
 		if pat.match(selection):
-			selection = list_expander(selection) if LIST_SELECT else int(selection)
-		if isinstance(selection, int) or isinstance(selection, list):
+			selection = int(selection)
+		if isinstance(selection, int):
 			finalAnswer = selection
 			break
 		elif selection == 'x':
@@ -127,6 +111,11 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 def arguments(ARGS, DIVIDER=':'):
 	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
 
+def get_alias(FILEPATH):
+	actionList = json.loads(read_file('{}/{}'.format(FILEPATH, 'action-list.json')))
+	alias = actionList['alias']
+	return alias
+
 def kv_set(DICT, KEY, DEFAULT = False):
 	if KEY in DICT:
 		DICT[KEY] = 't' if DICT[KEY] == 'true' else 'f' if DICT[KEY] == 'false' else DICT[KEY]
@@ -134,11 +123,13 @@ def kv_set(DICT, KEY, DEFAULT = False):
 	else:
 		return DEFAULT
 
-
-# custom helpers start here
-# =========================
-
-def get_alias(FILEPATH):
-	actionList = json.loads(read_file('{}/{}'.format(FILEPATH, 'action-list.json')))
-	alias = actionList['alias']
-	return alias
+def profile():
+	import baconMessages as msg
+	import os
+	utilDir = path('util')
+	if not os.path.exists(utilDir + '/profiles/profile.py'):
+		snippet = '''{\n\t"settings" : {\n\n\t\t}\n}'''
+		run_command('mkdir {}/profiles'.format(utilDir), False)
+		write_file(utilDir + '/profiles/profile.py', snippet)
+		print("\nprofile added!\n")
+		msg.done()
