@@ -26,14 +26,6 @@ To verify that the install was successful, run `bacon`. You should see the comma
 
 __You are all set!__
 
-### Raw Setup ###
-
-If this is your first time using git or if this is for a new laptop setup, you can install homebrew and then run the `raw-setup.sh` script, which will install `git` for you:
-
-```
-chmod u+x bacon/setup.sh && ./bacon/raw-setup.sh
-```
-
 ### Creating With Bacon ###
 
 To create a new utility, do:
