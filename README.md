@@ -28,7 +28,7 @@ To verify that the install was successful, run `bacon`. You should see the comma
 
 __You are all set!__
 
-### Yay, Bacon! Now what? ###
+## Yay, Bacon! Now what? ##
 
 Create a new utility, by running:
 
@@ -40,7 +40,7 @@ Follow the instructions in the terminal to finish creating your utility.
 
 The `name` is the name that will be used for the utility's folder. The alias is the string you will use to trigger your utility. Example: `bacon`.
 
-## Terminology ##
+### Terminology ###
 
 __Utility:__ A Python script, or collection of scripts, accompanied by a bash alias for invoking those scripts.
 
@@ -84,7 +84,7 @@ This can be consumed as `argDict['name']` resulting in the value `test`. For exa
 helpers.write_file(argDict['name'] + '.txt', contents)
 ```
 
-### Profile Command ###
+### Profiling ###
 
 If you want to create a profile file for your utility, do:
 
@@ -92,7 +92,7 @@ If you want to create a profile file for your utility, do:
 triggerWord -profile
 ```
 
-Profile files are used to set or override your utility's settings.
+Profile files are used to set or override your utility's settings file.
 
 ### Use The Source! ###
 
@@ -100,9 +100,9 @@ Each time you create a new utility (which adds a new alias to your `bacon-bits/.
 
 ### Utilities Observe The Following Behavior: ###
 
-- Typing the name of the utility - or rather, its alias - shows the list of possible commands/actions.
+- Typing the trigger word - the alias - shows the list of possible commands/actions.
 
-- When invoking a utility, each utility follows the pattern: `<utility-alias> <action>`
+- When invoking a utility, each utility follows the pattern: `<trigger-word> <action>`
 
 - Utilities come with a handful of `helpers` when writing your utility, that make writing utilities faster and easier.  These are common `helper` functions covering common actions that a typical utility might use.
 
@@ -114,7 +114,7 @@ Each time you create a new utility (which adds a new alias to your `bacon-bits/.
 - __settings.py__ = where the settings definitions live.  This file typically does not need to be modified. Exceptions include things such as when you need to switch between multiple profile files, etc.
 - __profiles folder__ = the profiles folder is where locally-specific settings live.  Any definition specific to a particular developers setup can be defined here, within a `profile.py` file.  This is also where any settings or task-specific data/definitions should live.  You can have multiple profile files inside the `profiles` folder.  Change which profile file your utility points to by changing the reference in the utility's `settings.py` file.
 - __sizzle.py__ = this runs when using the `-action`, `-profile`, or similar commands. Essentially `sizzle.py` contains those features tied to the initial configuration of a utility.
-- __profiles/profile.py__ = this is where locally-specific info can be stored/configured. For example, if two developers are using a utility, but have different configurations for that utility, the `profile.py` file is where these unique parts would be declared.
+- __profiles/profile.py__ = this is where locally-specific info can be stored/configured. For example, if two developers are using a utility, but have different configurations for that utility, the `profile.py` file is where these unique parts would live.
 - __action-list.json__ = this is where the actions are described.  When you do your utility alias with no accompanying action command, this file is read, and the names and descriptions are listed. You can use this file to add descriptions for each of your utility's actions.
 
 ## Helpers ##
@@ -139,7 +139,13 @@ In addition to your utility having profiles, bacon has support for its own `prof
 - __homeDir__ = to change the location to anything other than `Documents`, such as `"homeDir" : "Development"`. This would reference the `Development` directory, rather than the default `Documents` directory.
 - __utilitiesPrimeDirectory__ = to change the bacon home folder to anything other than `bacon-bits`.
 
-To use these, create a new directory inside of the `bacon` directory, and call it `profiles`.  Then inside the `profiles` directory, create a file called `profile.py`.  Add the following to this file:
+To use these, do:
+
+```
+bacon -profile
+```
+
+This will create the `profiles` directory, and a file called `profile.py`.  Add the following to this file:
 
 ```
 {
