@@ -6,6 +6,20 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 ## Setup ##
 
+Run the setup script from your bacon repo:
+
+```
+./bacon/setup.sh
+```
+
+What the script does:
+
+- creates a `bacon-bits` folder at `~/Documents/bacon-bits`
+- moves bacon to the new `bacon-bits` folder
+- moves the `.baconrc` file from bacon to the `bacon-bits` folder
+- adds `source ~/Documents/bacon-bits/.baconrc` to your `.zshrc` file
+- sources your `.zshrc` file
+
 Inside your `Documents` folder, create a folder called `bacon-bits`.  Clone the bacon repo inside the `bacon-bits` folder.  Then, run:
 
 ```
