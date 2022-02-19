@@ -20,18 +20,6 @@ What the script does:
 - adds `source ~/Documents/bacon-bits/.baconrc` to your `.zshrc` file
 - sources your `.zshrc` file
 
-Inside your `Documents` folder, create a folder called `bacon-bits`.  Clone the bacon repo inside the `bacon-bits` folder.  Then, run:
-
-```
-scp ~/Documents/bacon-bits/bacon/.baconrc ~/Documents/bacon-bits
-```
-
-Finally, add the following to your `.bash_profile` or `.zshrc` file:
-
-```
-source ~/Documents/bacon-bits/.baconrc
-```
-
 To verify that the install was successful, run `bacon`. You should see the commands available for bacon.
 
 __You are all set!__
