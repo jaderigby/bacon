@@ -12,7 +12,7 @@
         }, 
         {
             "name": "perks", 
-            "description": "Adds to the goto and show functions inside the .baconrc file."
+            "description": "Adds to the goto and showme functions inside the .baconrc file."
         },
         {
             "name": "set", 
