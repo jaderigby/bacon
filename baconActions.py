@@ -1,6 +1,7 @@
 import sys, create, helpers, baconAddAction
 import baconMessages as msg
 import addAlias
+import Perks
 # new imports start here
 
 # settings = helpers.get_settings()
@@ -26,4 +27,7 @@ elif action == '-profile':
 
 elif action == "alias":
 	addAlias.execute()
+
+elif action == "perks":
+	Perks.execute()
 # new actions start here
