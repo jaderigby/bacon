@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir ~/Documents/tst/bacon-bits
-mv ~/Documents/tst/bacon ~/Documents/tst/bacon-bits/bacon
-mv ~/Documents/tst/bacon-bits/bacon/.baconrc ~/Documents/tst/bacon-bits/.baconrc
-echo 'source ~/Documents/tst/bacon-bits/.baconrc' >> ~/.zshrc
+mkdir ~/Documents/bacon-bits
+mv ~/Documents/bacon ~/Documents/bacon-bits/bacon
+scp ~/Documents/bacon-bits/bacon/.baconrc ~/Documents/bacon-bits/.baconrc
+echo 'source ~/Documents/bacon-bits/.baconrc' >> ~/.zshrc
 source ~/.zshrc
