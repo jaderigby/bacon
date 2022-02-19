@@ -6,23 +6,33 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 ## Setup ##
 
-Run the setup script contained in your bacon repo:
+Run the following command to trigger the setup script:
 
 ```
-chmod u+x bacon/setup.sh && ./bacon/setup.sh
+python ~/Documents/bacon/setup.py --exec && cd ~/Documents/bacon && setup.py && source ~/.zshrc
 ```
 
 What the script does:
 
+- checks for homebrew; installs it, if needed
+- checks for git; installs it, if needed
 - creates a `bacon-bits` folder at `~/Documents/bacon-bits`
 - moves `bacon` to the new `bacon-bits` folder
 - moves the `.baconrc` file from `bacon` to the `bacon-bits` folder
 - adds `source ~/Documents/bacon-bits/.baconrc` to your `.zshrc` file
-- sources your `.zshrc` file
+- runs `source ~/.zshrc`
 
 To verify that the install was successful, run `bacon`. You should see the commands available for bacon.
 
 __You are all set!__
+
+### Raw Setup ###
+
+If this is your first time using git or if this is for a new laptop setup, you can install homebrew and then run the `raw-setup.sh` script, which will install `git` for you:
+
+```
+chmod u+x bacon/setup.sh && ./bacon/raw-setup.sh
+```
 
 ### Creating With Bacon ###
 
