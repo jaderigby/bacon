@@ -28,25 +28,29 @@ To verify that the install was successful, run `bacon`. You should see the comma
 
 __You are all set!__
 
-### Creating With Bacon ###
+### Yay, Bacon! Now what? ###
 
-To create a new utility, do:
+Create a new utility, by running:
 
 ```
 bacon new
 ```
 
-Follow the instructions in the terminal to finish creating your utility.
+Follow the instructions in the terminal to finish creating your utility. 
+
+The `name` is the name that will be used for the utility's folder. The alias is the string you will use to trigger your utility. Example: `bacon`.
 
 ### Adding An Action ###
 
-To add a new action to your utility, do:
+To add an action to your utility, do:
 
 ```
 utilityAlias -action
 ```
 
-To add a new action that supports parameters, do:
+`bacon new` is an example of an action, where `new` is the action.
+
+You can also add an action that supports parameters, by doing:
 
 ```
 utilityAlias -action args:true
@@ -64,7 +68,7 @@ The above command will result in the following object being assigned to your uti
 {"name" : "test"}
 ```
 
-This can be consumed as `argDict['name']` resulting in the value `test`, such as:
+This can be consumed as `argDict['name']` resulting in the value `test`. For example, you could use it to create a new file called "test.txt", like so:
 
 ```
 helpers.write_file(argDict['name'] + '.txt', contents)
@@ -78,9 +82,11 @@ If you want to create a profile file for your utility, do:
 utilityAlias -profile
 ```
 
+Profile files are used to set or override your utility's settings.
+
 ### Be Sure To Source! ###
 
-Each time you create a new utility (which adds a new alias to your `bacon-bits/.baconrc` file) you will want to run `bacon set`.
+Each time you create a new utility (which adds a new alias to your `bacon-bits/.baconrc` file, you will want to run `bacon set`.  This will source the `.baconrc` file.
 
 ### Utilities Observe The Following Behavior: ###
 
