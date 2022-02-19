@@ -6,7 +6,7 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 ## Setup ##
 
-Run the setup script from your bacon repo:
+Run the setup script contained in your bacon repo:
 
 ```
 chmod u+x bacon/setup.sh && ./bacon/setup.sh
@@ -24,15 +24,15 @@ To verify that the install was successful, run `bacon`. You should see the comma
 
 __You are all set!__
 
-### Create A New Utility Using Bacon ###
+### Creating With Bacon ###
 
-When creating a new utility, do:
+To create a new utility, do:
 
 ```
 bacon new
 ```
 
-This command will walk you through creating a new utility.
+Follow the instructions in the terminal to finish creaating your utility.
 
 ### Adding An Action ###
 
