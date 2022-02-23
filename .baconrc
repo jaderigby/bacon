@@ -15,9 +15,9 @@ alias bacon="baconFun"
 gotoFun() {
     if [ ! -z $1 ]; then
         if [ $1 = "bits" ]; then
-            cd /Users/jaderigby/Documents/bacon-bits
+            cd ~/Documents/bacon-bits
         elif [ $1 = "bacon" ]; then
-            cd /Users/jaderigby/Documents/bacon-bits/bacon
+            cd ~/Documents/bacon-bits/bacon
         #~~~ bacon:goto placeholder
         fi
     fi
