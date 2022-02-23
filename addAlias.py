@@ -11,7 +11,7 @@ def execute():
 	addPerks = helpers.kv_set(settings, 'perks')
 	count = 0
 	# print(utilList)
-	print(addPerks)
+	# print(addPerks)
 	APPENDED_DATA_STR = DATA
 	for item in utilList:
 		path = baconBitsPath + '/' + item
