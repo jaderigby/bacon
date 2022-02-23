@@ -14,12 +14,31 @@ def get_settings():
 			settings[key] = profile['settings'][key]
 	return settings
 
+def run_command_output(CMD, option = True):
+	import subprocess
+	if option:
+		print('\n============== Outputting Command: {}\n'.format(CMD))
+	result = False
+	if CMD != None:
+		process = subprocess.Popen(CMD, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+		out, err = process.communicate()
+
+		if err:
+			print(err)
+		
+		else:
+			result = out.decode('utf-8')
+
+	return result
+
 def path(TYPE):
 	import os
 	if TYPE == 'user':
 		return os.path.expanduser('~/')
 	elif TYPE == 'util' or TYPE == 'utility':
 		return os.path.dirname(os.path.realpath(__file__))
+	elif TYPE == 'current':
+		return run_command_output('pwd', False).replace('\n', '')
 	else:
 		return False
 
@@ -45,22 +64,6 @@ def run_command(CMD, option = True):
 	if option:
 		print('\n============== Running Command: {}\n'.format(showCmd))
 	subprocess.call(CMD, shell=shellStatus)
-
-def run_command_output(CMD, option = True):
-	import subprocess
-	if option:
-		print('\n============== Outputting Command: {}\n'.format(CMD))
-	result = False
-	if CMD != None:
-		process = subprocess.Popen(CMD, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
-		out, err = process.communicate()
-
-		if err:
-			print(err)
-		else:
-			result = out.decode('utf-8')
-
-	return result
 
 def decorate(COLOR, STRING):
 	bcolors = {
