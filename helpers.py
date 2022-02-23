@@ -44,6 +44,8 @@ def path(TYPE):
 		return os.path.expanduser('~/')
 	elif TYPE == 'util' or TYPE == 'utility':
 		return os.path.dirname(os.path.realpath(__file__))
+	elif TYPE == 'current':
+		return run_command_output('pwd', False).replace('\n', '')
 	else:
 		return False
 
