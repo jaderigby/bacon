@@ -38,6 +38,23 @@ def run_command(CMD, option = True):
 		print('\n============== Running Command: {}\n'.format(CMD))
 	subprocess.call(CMD, shell=True)
 
+def run_command_output(CMD, option = True):
+	import subprocess
+	if option:
+		print('\n============== Outputting Command: {}\n'.format(CMD))
+	result = False
+	if CMD != None:
+		process = subprocess.Popen(CMD, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+		out, err = process.communicate()
+
+		if err:
+			print(err)
+		
+		else:
+			result = out.decode('utf-8')
+
+	return result
+
 def path(TYPE):
 	import os
 	if TYPE == 'user':
@@ -63,23 +80,6 @@ def decorate(COLOR, STRING):
 	}
 
 	return bcolors[COLOR] + STRING + bcolors['endc']
-
-def run_command_output(CMD, option = True):
-	import subprocess
-	if option:
-		print('\n============== Outputting Command: {}\n'.format(CMD))
-	result = False
-	if CMD != None:
-		process = subprocess.Popen(CMD, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
-		out, err = process.communicate()
-
-		if err:
-			print(err)
-		
-		else:
-			result = out.decode('utf-8')
-
-	return result
 
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
 def user_selection(DESCRIPTION, LIST):
