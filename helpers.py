@@ -15,7 +15,7 @@ def get_settings():
 	if 'settings' in profile:
 		return profile['settings']
 	else:
-		return False
+		return settings
 
 def user_input(STRING):
 	try:
