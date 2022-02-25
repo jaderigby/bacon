@@ -45,7 +45,7 @@ def main():
     def handle_bacon():
         run_command('mkdir ~/Documents/bacon-bits && mv ~/Documents/bacon ~/Documents/bacon-bits/bacon')
         run_command('scp ~/Documents/bacon-bits/bacon/.baconrc ~/Documents/bacon-bits/.baconrc')
-        run_command("echo 'source ~/Documents/bacon-bits/.baconrc' >> ~/.zshrc")
+        run_command("echo '\nsource ~/Documents/bacon-bits/.baconrc' >> ~/.zshrc")
     
 
     #=============== Initialize ===============
