@@ -115,3 +115,7 @@ def alias():
 	if not match:
 		contents += formattedAlias
 	helpers.write_file(bashrcFilepath, contents)
+
+def actionlist():
+	import helpers
+	helpers.run_command('code {}/action-list.json'.format(helpers.path('util')))

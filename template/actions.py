@@ -25,4 +25,7 @@ elif action == '-helpers':
 
 elif action == '-alias':
 	sizzle.alias()
+
+elif action == '-actionlist':
+	sizzle.actionlist()
 # new actions start here
