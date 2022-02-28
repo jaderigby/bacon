@@ -24,7 +24,7 @@ What the script does:
 - checks for git; installs it, if needed
 - creates a `bacon-bits` folder at `~/Documents/bacon-bits`
 - moves `bacon` to the new `bacon-bits` folder
-- moves the `.baconrc` file from `bacon` to the `bacon-bits` folder
+- copies the `.baconrc` file from `bacon` to the `bacon-bits` folder
 - adds `source ~/Documents/bacon-bits/.baconrc` to your `.zshrc` file
 - __Note:__ the last line of the above command runs `source ~/.zshrc`
 
