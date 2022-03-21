@@ -4,10 +4,6 @@ __Note:__ These instructions target mac and unix setups, atm.
 
 Bacon is a utility for building other utilities. It helps generate a template for creating quick utilities run in bash (using alias commands) and written in Python.  In short, Bacon makes everything better!
 
-## Made With Bacon! ##
-
-If a utility says "\~\~\~ Made With Bacon!", it belongs in the bacon-bits folder (see Setup instructions below).  To activate, run `bacon alias` and then `bacon set`, and you're all set!
-
 ## Setup ##
 
 Either download and unzip the bacon repo into your Documents folder, or clone it into your Documents folder.
@@ -31,6 +27,10 @@ What the script does:
 To verify that the install was successful, run `bacon`. You should see the commands available for bacon.
 
 __You are all set!__
+
+## Made With Bacon! ##
+
+If a utility says "\~\~\~ Made With Bacon!", it belongs in the bacon-bits folder (see Setup instructions below).  To activate, run `bacon alias` and then `bacon set`, and you're all set!
 
 ## Yay, Bacon! Now what? ##
 
