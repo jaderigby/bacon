@@ -30,7 +30,7 @@ __You are all set!__
 
 ## Made With Bacon! ##
 
-If a utility says "\~\~\~ Made With Bacon!", it belongs in the bacon-bits folder (see Setup instructions below).  To activate, run `bacon alias` and then `bacon set`, and you're all set!
+If a utility says "\~\~\~ Made With Bacon!", it belongs in the bacon-bits folder (see Setup instructions above).  To activate, run `bacon alias` and then `bacon set`, and you're all set!
 
 ## Yay, Bacon! Now what? ##
 
