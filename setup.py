@@ -39,7 +39,7 @@ def main():
             out, err = process.communicate()
 
             for line in out.splitlines():
-                if not "command not found" in line:
+                if not ("command not found" in line):
                     result = True
     
     def handle_bacon():
