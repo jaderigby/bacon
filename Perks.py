@@ -20,17 +20,17 @@ def execute():
 		if alias:
 			aliasStr1 = '''        elif [ $1 = "{ALIAS}" ]; then
             cd {PATH}
-        #≈≈≈ bacon:goto placeholder'''.format(ALIAS= alias, PATH= path)
+        #~~~ bacon:goto placeholder'''.format(ALIAS= alias, PATH= path)
 			aliasStr2 = '''        elif [ $1 = "{ALIAS}" ]; then
             open {PATH}
-        #≈≈≈ bacon:showme placeholder'''.format(ALIAS= alias, PATH= path)
+        #~~~ bacon:showme placeholder'''.format(ALIAS= alias, PATH= path)
 			pat = re.compile('elif \[ \$1 = "{ALIAS}" \]; then'.format(ALIAS = alias))
 			match = re.search(pat, DATA)
 			if not match:
 				count += 1
 				print('\nadding utility to goto and showme: {}'.format(alias))
-				MODIFIED_DATA_STR = MODIFIED_DATA_STR.replace('        #≈≈≈ bacon:goto placeholder', aliasStr1)
-				MODIFIED_DATA_STR = MODIFIED_DATA_STR.replace('        #≈≈≈ bacon:showme placeholder', aliasStr2)
+				MODIFIED_DATA_STR = MODIFIED_DATA_STR.replace('        #~~~ bacon:goto placeholder', aliasStr1)
+				MODIFIED_DATA_STR = MODIFIED_DATA_STR.replace('        #~~~ bacon:showme placeholder', aliasStr2)
 	if count > 0:
 		helpers.write_file(baconrcFile, MODIFIED_DATA_STR)
 	else:
