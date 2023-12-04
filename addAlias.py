@@ -31,12 +31,12 @@ def execute():
 				if addPerks == "True" or addPerks == "true":
 					aliasStrGoto = '''        elif [ $1 = "{ALIAS}" ]; then
             cd {PATH}
-        #≈≈≈ bacon:goto placeholder'''.format(ALIAS= alias, PATH= path)
+        #~~~ bacon:goto placeholder'''.format(ALIAS= alias, PATH= path)
 					aliasStrShowme = '''        elif [ $1 = "{ALIAS}" ]; then
             open {PATH}
-        #≈≈≈ bacon:showme placeholder'''.format(ALIAS= alias, PATH= path)
-					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #≈≈≈ bacon:goto placeholder', aliasStrGoto)
-					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #≈≈≈ bacon:showme placeholder', aliasStrShowme)
+        #~~~ bacon:showme placeholder'''.format(ALIAS= alias, PATH= path)
+					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #~~~ bacon:goto placeholder', aliasStrGoto)
+					APPENDED_DATA_STR = APPENDED_DATA_STR.replace('        #~~~ bacon:showme placeholder', aliasStrShowme)
 	if count > 0:
 		helpers.write_file(baconrcFile, APPENDED_DATA_STR)
 	else:

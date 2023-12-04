@@ -18,7 +18,7 @@ gotoFun() {
             cd ~/Documents/bacon-bits
         elif [ $1 = "bacon" ]; then
             cd ~/Documents/bacon-bits/bacon
-        #≈≈≈ bacon:goto placeholder
+        #~~~ bacon:goto placeholder
         fi
     fi
 }
@@ -30,7 +30,7 @@ showFun() {
             open ~/Documents/bacon-bits
         elif [ $1 = "bacon" ]; then
             open ~/Documents/bacon-bits/bacon
-        #≈≈≈ bacon:showme placeholder
+        #~~~ bacon:showme placeholder
         fi
     fi
 }
