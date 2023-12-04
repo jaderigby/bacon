@@ -32,6 +32,9 @@ showFun() {
             open ~/Documents/bacon-bits/bacon
         #~~~ bacon:showme placeholder
         fi
+    else
+        curr=`pwd`
+        open $curr
     fi
 }
 alias showme="showFun"
