@@ -128,7 +128,33 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 	return finalAnswer
 
 def arguments(ARGS, DIVIDER=':'):
-	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
+	import re
+
+	ARGS_FORMATTED = {}
+	pat = re.compile('[a-zA-Z0-9]*:[\w\,_-{]*:')
+	
+	for item in ARGS:
+
+		if DIVIDER not in item:
+			ARGS_FORMATTED[item] = 't'
+		elif pat.match(item):
+			parsed = item.replace('{','').replace('}','').split(':')
+			itemParentKey = parsed[0]
+			itemKey  = parsed[1]
+			itemValue = parsed[2]
+			if itemParentKey in ARGS_FORMATTED:
+				ARGS_FORMATTED[itemParentKey][itemKey] = itemValue
+			else:
+				newObj = {}
+				newObj[itemKey] = itemValue
+				ARGS_FORMATTED[itemParentKey] = newObj
+		else:
+			parsed = item.split(':')
+			itemKey  = parsed[0]
+			itemValue = parsed[1]
+			ARGS_FORMATTED[itemKey] = itemValue
+	
+	return ARGS_FORMATTED
 
 def kv_set(DICT, KEY, DEFAULT = False):
 	if KEY in DICT:
