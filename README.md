@@ -6,20 +6,18 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 ## Setup ##
 
-Either download and unzip the bacon repo into your Documents folder, or clone it into your Documents folder.
+First, make sure that you have git installed.
 
-Then, run the following command to trigger the setup script:
+Then, run the following command:
 
 ```
-python ~/Documents/bacon/setup.py --exec && cd ~/Documents/bacon && setup.py && source ~/.zshrc
+cd ~/Documents && mkdir bacon-bits && cd bacon-bits && git clone https://github.com/jaderigby/bacon.git && scp bacon/.baconrc .baconrc && echo '\nsource ~/Documents/bacon-bits/.baconrc' >> ~/.zshrc && source ~/.zshrc
 ```
 
-What the script does:
+What it does:
 
-- checks for homebrew; installs it, if needed
-- checks for git; installs it, if needed
-- creates a `bacon-bits` folder at `~/Documents/bacon-bits`
-- moves `bacon` to the new `bacon-bits` folder
+- Goes to your `Documents` folder and creates a new folder called `bacon-bits`
+- Clones the `bacon` repo to the `bacon-bits` folder
 - copies the `.baconrc` file from `bacon` to the `bacon-bits` folder
 - adds `source ~/Documents/bacon-bits/.baconrc` to your `.zshrc` file
 - __Note:__ the last line of the above command runs `source ~/.zshrc`
