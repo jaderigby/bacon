@@ -6,7 +6,7 @@ Bacon is a utility for building other utilities. It helps generate a template fo
 
 ## Setup ##
 
-First, make sure that you have git installed.
+First, make sure that you have [git](https://git-scm.com/downloads) installed.
 
 Then, run the following command:
 
