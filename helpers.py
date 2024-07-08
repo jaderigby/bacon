@@ -1,4 +1,4 @@
-import json
+git import json
 from settings import settings
 
 profilePath = settings['profile_url'] + settings['profile']
@@ -111,7 +111,13 @@ def user_selection(DESCRIPTION, LIST):
 	return finalAnswer
 
 def arguments(ARGS, DIVIDER=':'):
-	return dict(item.split('{}'.format(DIVIDER)) for item in ARGS)
+	ARGS_FORMATTED = []
+	for item in ARGS:
+		if DIVIDER not in item:
+			ARGS_FORMATTED.append('{}:t'.format(item))
+		else:
+			ARGS_FORMATTED.append(item)
+	return dict(item.split('{}'.format(DIVIDER), 1) for item in ARGS_FORMATTED)
 
 def get_alias(FILEPATH):
 	actionList = json.loads(read_file('{}/{}'.format(FILEPATH, 'action-list.json')))
