@@ -1,4 +1,4 @@
-git import json
+import json
 from settings import settings
 
 profilePath = settings['profile_url'] + settings['profile']
