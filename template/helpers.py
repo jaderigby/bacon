@@ -51,6 +51,10 @@ def read_file(FILEPATH):
 def write_file(FILEPATH, DATA):
 	with open(FILEPATH, 'w') as f: f.write(DATA)
 
+def ls_dir(PATH):
+	import os
+	return [d for d in os.listdir(PATH) if os.path.isdir(os.path.join(PATH, d))]
+
 def run_command(CMD, option = True):
 	import subprocess
 	shellStatus = True
@@ -99,7 +103,7 @@ def list_expander(LIST):
     return expandedList
 
 # generates a user selection session, where the passed in list is presented as numbered selections; selecting "x" or just hitting enter results in the string "exit" being returned. Any invaild selection is captured and presented with the message "Please select a valid entry"
-def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
+def user_selection(DESCRIPTION, LIST, LIST_SELECT = False, DETAILED = False):
 	import re
 	str = ''
 	for i, item in enumerate(LIST, start=1):
@@ -125,7 +129,29 @@ def user_selection(DESCRIPTION, LIST, LIST_SELECT = False):
 			break
 		else:
 			print("\nPlease select a valid entry...")
-	return finalAnswer
+	
+	finalAnswerObj = {}
+	
+	if finalAnswer == 'exit':
+		return finalAnswer
+	
+	else:
+		if isinstance(finalAnswer, list):
+			finalAnswerObj = []
+			for item in finalAnswer:
+				tempObj = {}
+				tempObj['option'] = item
+				tempObj['index'] = item - 1
+				tempObj['value'] = LIST[item - 1]
+				finalAnswerObj.append(tempObj)
+		else:
+			finalAnswerObj['option'] = finalAnswer
+			finalAnswerObj['index'] = finalAnswer - 1
+			finalAnswerObj['value'] = LIST[finalAnswer - 1]
+	if DETAILED:
+		return finalAnswerObj
+	else:
+		return finalAnswerObj['option']
 
 def arguments(ARGS, DIVIDER=':'):
 	import re
